@@ -6,7 +6,7 @@ import java.util.LinkedList;
 public class Pedido {
 
 	private int codPedido;
-	private Date fecha_pedido;
+	private Date fechaPedido;
 	private double descuento;
 	private Cliente cliente;
 	private Semilla semilla;
