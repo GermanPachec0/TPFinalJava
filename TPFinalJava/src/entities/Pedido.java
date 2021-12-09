@@ -10,7 +10,7 @@ public class Pedido {
 	private double descuento;
 	private Cliente cliente;
 	private Semilla semilla;
-	private LinkedList<Analisis> listAnalisis;
+	private LinkedList<PedidoAnalisis> listAnalisis;
 	
 	public int getCod_pedido() {
 		return codPedido;
