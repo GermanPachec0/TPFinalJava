@@ -2,15 +2,15 @@ package entities;
 
 public class Semilla {
 
-	private int cod_semilla;
+	private int codSemilla;
 	private String raza;
 	private String especie;
 	
 	public int getCod_semilla() {
-		return cod_semilla;
+		return codSemilla;
 	}
 	public void setCod_semilla(int cod_semilla) {
-		this.cod_semilla = cod_semilla;
+		this.codSemilla = cod_semilla;
 	}
 	public String getRaza() {
 		return raza;
