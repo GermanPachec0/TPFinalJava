@@ -19,10 +19,10 @@ public class Pedido {
 		this.codPedido = cod_pedido;
 	}
 	public Date getFecha_analisis() {
-		return fecha_pedido;
+		return fechaPedido;
 	}
 	public void setFecha_analisis(Date fecha_analisis) {
-		this.fecha_pedido = fecha_analisis;
+		this.fechaPedido = fecha_analisis;
 	}
 	public double getDescuento() {
 		return descuento;
