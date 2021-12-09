@@ -6,7 +6,7 @@ import java.util.LinkedList;
 public class Pedido {
 
 	private int codPedido;
-	private Date fecha_pedido;
+	private Date fechaPedido;
 	private double descuento;
 	private Cliente cliente;
 	private Semilla semilla;
@@ -19,10 +19,10 @@ public class Pedido {
 		this.codPedido = cod_pedido;
 	}
 	public Date getFecha_analisis() {
-		return fecha_pedido;
+		return fechaPedido;
 	}
 	public void setFecha_analisis(Date fecha_analisis) {
-		this.fecha_pedido = fecha_analisis;
+		this.fechaPedido = fecha_analisis;
 	}
 	public double getDescuento() {
 		return descuento;
