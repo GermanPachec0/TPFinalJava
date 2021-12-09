@@ -5,7 +5,7 @@ import java.util.LinkedList;
 
 public class Pedido {
 
-	private int cod_pedido;
+	private int codPedido;
 	private String detalle;
 	private Date fecha_analisis;
 	private double descuento;
@@ -14,10 +14,10 @@ public class Pedido {
 	private LinkedList<Analisis> listAnalisis;
 	
 	public int getCod_pedido() {
-		return cod_pedido;
+		return codPedido;
 	}
 	public void setCod_pedido(int cod_pedido) {
-		this.cod_pedido = cod_pedido;
+		this.codPedido = cod_pedido;
 	}
 	public String getDetalle() {
 		return detalle;

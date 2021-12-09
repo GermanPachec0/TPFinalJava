@@ -2,7 +2,7 @@ package entities;
 
 public class Usuario {
 
-	private int cod_user;
+	private int codUser;
 	private String username;
 	private String password;
 	private int tipo;
@@ -10,10 +10,10 @@ public class Usuario {
 	private String apellido;
 	
 	public int getCod_user() {
-		return cod_user;
+		return codUser;
 	}
 	public void setCod_user(int cod_user) {
-		this.cod_user = cod_user;
+		this.codUser = cod_user;
 	}
 	public String getUsername() {
 		return username;

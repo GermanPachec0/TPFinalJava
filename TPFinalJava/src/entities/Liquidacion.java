@@ -5,6 +5,7 @@ import java.util.LinkedList;
 
 public class Liquidacion {
 
+	private int codLiquidacion;
 	private Date fechaLiquidacion;
 	private Double total;
 	private LinkedList<Pedido> pedidos;
@@ -33,5 +34,11 @@ public class Liquidacion {
 	}
 	public void setEmpleado(Usuario empleado) {
 		this.empleado = empleado;
+	}
+	public int getCodLiquidacion() {
+		return codLiquidacion;
+	}
+	public void setCodLiquidacion(int codLiquidacion) {
+		this.codLiquidacion = codLiquidacion;
 	}
 }

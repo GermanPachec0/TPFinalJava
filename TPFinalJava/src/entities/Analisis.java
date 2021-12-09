@@ -2,15 +2,15 @@ package entities;
 
 public class Analisis {
 
-	private int cod_analisis;
+	private int codAnalisis;
 	private Double precio;
 	private String descripcion;
 	
 	public int getCod_analisis() {
-		return cod_analisis;
+		return codAnalisis;
 	}
 	public void setCod_analisis(int cod_analisis) {
-		this.cod_analisis = cod_analisis;
+		this.codAnalisis = cod_analisis;
 	}
 	public Double getPrecio() {
 		return precio;
