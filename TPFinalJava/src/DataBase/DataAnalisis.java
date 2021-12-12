@@ -2,6 +2,8 @@ package DataBase;
 
 import java.util.LinkedList;
 
+import data.DbConnector;
+
 import java.sql.*;
 
 import entities.Analisis;
@@ -105,4 +107,44 @@ public class DataAnalisis {
 		
 	}
 	
+	public void update(Analisis a) {
+		PreparedStatement stmt = null;
+		
+		try {
+			stmt=DbConnector.getInstancia().getConn().prepareStatement("update analisis set precio =?, descripcion=? where cod_analisis=?");
+			stmt.setDouble(1, a.getPrecio());
+			stmt.setString(2, a.getDescripcion());
+			stmt.setInt(3, a.getCodAnalisis());
+			
+			stmt.executeUpdate();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(stmt!=null) stmt.close();
+				DbConnector.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public void remove(Analisis a) {
+		PreparedStatement stmt = null;
+		
+		try {
+			stmt=DbConnector.getInstancia().getConn().prepareStatement("selete from analisis where cod_analisis=?");
+			stmt.setInt(1, a.getCodAnalisis());
+			stmt.executeUpdate();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(stmt!=null) stmt.close();
+				DbConnector.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 }
