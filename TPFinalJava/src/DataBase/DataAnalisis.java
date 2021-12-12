@@ -2,8 +2,6 @@ package DataBase;
 
 import java.util.LinkedList;
 
-import data.DbConnector;
-
 import java.sql.*;
 
 import entities.Analisis;
