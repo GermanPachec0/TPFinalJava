@@ -6,12 +6,6 @@ public class Analisis {
 	private Double precio;
 	private String descripcion;
 	
-	public int getCod_analisis() {
-		return codAnalisis;
-	}
-	public void setCod_analisis(int cod_analisis) {
-		this.codAnalisis = cod_analisis;
-	}
 	public Double getPrecio() {
 		return precio;
 	}
@@ -23,6 +17,12 @@ public class Analisis {
 	}
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+	public int getCodAnalisis() {
+		return codAnalisis;
+	}
+	public void setCodAnalisis(int codAnalisis) {
+		this.codAnalisis = codAnalisis;
 	}
 	
 }
