@@ -6,11 +6,11 @@ public class Semilla {
 	private String raza;
 	private String especie;
 	
-	public int getCod_semilla() {
+	public int getCodSemilla() {
 		return codSemilla;
 	}
-	public void setCod_semilla(int cod_semilla) {
-		this.codSemilla = cod_semilla;
+	public void setCodSemilla(int codSemilla) {
+		this.codSemilla = codSemilla;
 	}
 	public String getRaza() {
 		return raza;

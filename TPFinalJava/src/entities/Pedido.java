@@ -42,10 +42,10 @@ public class Pedido {
 	public void setSemilla(Semilla semilla) {
 		this.semilla = semilla;
 	}
-	public LinkedList<Analisis> getListAnalisis() {
+	public LinkedList<PedidoAnalisis> getListAnalisis() {
 		return listAnalisis;
 	}
-	public void setListAnalisis(LinkedList<Analisis> listAnalisis) {
+	public void setListAnalisis(LinkedList<PedidoAnalisis> listAnalisis) {
 		this.listAnalisis = listAnalisis;
 	}
 }

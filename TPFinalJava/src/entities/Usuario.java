@@ -9,11 +9,11 @@ public class Usuario {
 	private String nombre;
 	private String apellido;
 	
-	public int getCod_user() {
+	public int getCodUser() {
 		return codUser;
 	}
-	public void setCod_user(int cod_user) {
-		this.codUser = cod_user;
+	public void setCodUser(int codUser) {
+		this.codUser = codUser;
 	}
 	public String getUsername() {
 		return username;
