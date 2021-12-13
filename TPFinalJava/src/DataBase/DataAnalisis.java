@@ -131,7 +131,7 @@ public class DataAnalisis {
 		PreparedStatement stmt = null;
 		
 		try {
-			stmt=DbConnector.getInstancia().getConn().prepareStatement("selete from analisis where cod_analisis=?");
+			stmt=DbConnector.getInstancia().getConn().prepareStatement("delete from analisis where cod_analisis=?");
 			stmt.setInt(1, a.getCodAnalisis());
 			stmt.executeUpdate();
 		} catch(SQLException e) {
