@@ -74,7 +74,7 @@
     </tbody>
   </table>
   
-  <button type="button" class="btn btn-primary">Insertar</button>
+  <button type="button" class="btn btn-primary " href="NuevoAnalisis">Insertar</button>
   <button type="button" class="btn btn-success">Editar</button>
   <button type="button" class="btn btn-danger">Eliminar</button>
   

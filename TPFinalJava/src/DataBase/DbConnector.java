@@ -9,9 +9,9 @@ private static DbConnector instancia;
 	private String driver="com.mysql.cj.jdbc.Driver";
 	private String host="localhost";
 	private String port="3306";
-	private String user="java";
-	private String password="himitsu";
-	private String db="java";
+	private String user="root";
+	private String password="123456";
+	private String db="analisis_semillas";
 	private int conectados=0;
 	private Connection conn=null;
 	
