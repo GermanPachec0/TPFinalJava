@@ -32,8 +32,30 @@ public class ListaAnalisis extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		
+		String accion = request.getParameter("accion");
+		if(accion!=null)
+		{
+			switch (accion) {
+			case "editar":
+					this.editarAnalisis(request,response);break;
+			case "eliminar":
+			this.eliminarAnalisis(request,response);break;
+			default:
+				//this.accionDefault(request,response);
+			}
+		}
+			else {
+				//this.accionDefault(request,response);
+			}
+		
+		response.getWriter().append("Agregado con exito ").append(request.getContextPath());
+		
+		
 	}
+
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -42,10 +64,90 @@ public class ListaAnalisis extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 		
+		String accion = request.getParameter("accion");
+		if(accion!=null)
+		{
+			switch (accion) {
+			case "insertar":
+			this.insertarAnalisis(request,response);break;
+			case "modificar":
+			this.modificarAnalisis(request,response);break;
+			case "eliminar":
+				this.eliminarAnalisis(request,response);break;
+				
+			
+			default:
+				//this.accionDefault(request,response);
+			}
+		}
+			else {
+				//this.accionDefault(request,response);
+			}
 		
-		LinkedList<Analisis> analisis = new LogicAnalisis().getAll();
-		request.setAttribute("listaAnalisis", analisis);
+		}
+	
+	
+	
+	private void insertarAnalisis(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		// TODO Auto-generated method stub
+		
+		String descripcion = request.getParameter("descripcion");
+		Double precio = Double.parseDouble( request.getParameter("precio"));
+		Analisis analisis  = new Analisis();
+		analisis.setDescripcion(descripcion);
+		analisis.setPrecio(precio);
+		new LogicAnalisis().add(analisis);
+		response.getWriter().append("Agregado con exito ").append(request.getContextPath());
+	}
+
+	private void editarAnalisis(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		
+		int idAnalisis = Integer.parseInt(request.getParameter("idAnalisis"));
+		Analisis an = new Analisis();
+		an.setCodAnalisis(idAnalisis);
+		Analisis analisis = new LogicAnalisis().getByCod(an);
+		request.setAttribute("analisis", analisis);
+		request.getRequestDispatcher("/EditarAnalisis.jsp").forward(request, response);
 		
 	}
+	
+	private void modificarAnalisis(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		
+		int idAnalisis = Integer.parseInt(request.getParameter("idAnalisis"));
+		Analisis an = new Analisis();
+		an.setCodAnalisis(idAnalisis);
+		Analisis analisisActual= new LogicAnalisis().getByCod(an);
+		String descripcion= request.getParameter("descripcion");
+		double precio = Double.parseDouble(request.getParameter("precio"));
+		
+		analisisActual.setDescripcion(descripcion);
+		analisisActual.setPrecio(precio);
+		
+		new LogicAnalisis().update(analisisActual);
+		//this.accionDefault(request,response);
+		 
+		
+	}
+	
+	private void eliminarAnalisis(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		
+		int idAnalisis = Integer.parseInt(request.getParameter("idAnalisis"));
+		Analisis an = new Analisis();
+		an.setCodAnalisis(idAnalisis);
+		
+		new LogicAnalisis().remove(an);
+		
+		//this.accionDefault(request,response);
+		
+	}
+	
+	
+	
+	
+	
+	
 
 }

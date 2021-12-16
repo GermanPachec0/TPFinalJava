@@ -16,6 +16,7 @@ private static DbConnector instancia;
 	private Connection conn=null;
 	
 	private DbConnector() {
+		System.out.println("Hola");
 		try {
 			Class.forName(driver);
 		} catch (ClassNotFoundException e) {

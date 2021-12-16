@@ -26,6 +26,8 @@
     	LinkedList<Analisis> la = new LogicAnalisis().getAll();
     %>
 </head>
+
+
 <body>
 
 <div class ="container">
@@ -60,6 +62,8 @@
         <th>Codigo</th>
         <th>Descripcion</th>
         <th>Precio</th>
+        <th>Editar</th>
+        <th>Eliminar</th>
       </tr>
     </thead>
     <tbody>
@@ -68,13 +72,19 @@
         <td><%= an.getCodAnalisis()%></td>
         <td><%=an.getDescripcion() %></td>
         <td><%=an.getPrecio() %></td>
-        
+        <td><a>Editar</a></td>
+        <td><a>Eliminar</a></td>
       </tr>
       <%} %>
+     
     </tbody>
   </table>
   
-  <button type="button" class="btn btn-primary " href="NuevoAnalisis">Insertar</button>
+  <a type="button" class="btn btn-primary " data-toggle="modal" data-target="AgregarAnalisis">
+  <i class="fas fa-plus"></i>
+  Agregar Analisis
+  </a>
+  
   <button type="button" class="btn btn-success">Editar</button>
   <button type="button" class="btn btn-danger">Eliminar</button>
   
