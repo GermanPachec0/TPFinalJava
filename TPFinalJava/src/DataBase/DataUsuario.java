@@ -14,11 +14,11 @@ public class DataUsuario {
 		
 		try {
 			stmt = DbConnector.getInstancia().getConn().createStatement();
-			rs= stmt.executeQuery("select cod_usuario,username,tipo,nombre,apellido from usuarios");
+			rs= stmt.executeQuery("select cod_user,username,tipo,nombre,apellido from usuario");
 			if(rs!=null) {
 				while(rs.next()) {
 					Usuario user = new Usuario();
-					user.setCodUser(rs.getInt("cod_usuario"));
+					user.setCodUser(rs.getInt("cod_user"));
 					user.setUsername(rs.getString("username"));
 					user.setTipo(rs.getInt("tipo"));
 					user.setNombre(rs.getString("nombre"));
@@ -48,13 +48,13 @@ public class DataUsuario {
 		Usuario u = null;
 		
 		try {
-			stmt=DbConnector.getInstancia().getConn().prepareStatement("select cod_usuario,username,tipo,nombre,apellido from usuarios where cod_usuario = ?");
+			stmt=DbConnector.getInstancia().getConn().prepareStatement("select cod_user,username,tipo,nombre,apellido from usuario where cod_user = ?");
 			stmt.setInt(1, userToSearch.getCodUser());
 			rs=stmt.executeQuery();
 			
 			if(rs!=null && rs.next()) {
 				u = new Usuario();
-				u.setCodUser(rs.getInt("cod_usuario"));
+				u.setCodUser(rs.getInt("cod_user"));
 				u.setUsername(rs.getString("username"));
 				u.setTipo(rs.getInt("tipo"));
 				u.setNombre(rs.getString("nombre"));
@@ -80,14 +80,14 @@ public class DataUsuario {
 		Usuario u = null;
 		
 		try {
-			stmt=DbConnector.getInstancia().getConn().prepareStatement("select cod_usuario,username,tipo,nombre,apellido from usuarios where username = ? and password = ?");
+			stmt=DbConnector.getInstancia().getConn().prepareStatement("select cod_user,username,tipo,nombre,apellido from usuario where username = ? and password = ?");
 			stmt.setString(1, userToSearch.getUsername());
 			stmt.setString(2, userToSearch.getPassword());
 			rs=stmt.executeQuery();
 			
 			if(rs!=null && rs.next()) {
 				u = new Usuario();
-				u.setCodUser(rs.getInt("cod_usuario"));
+				u.setCodUser(rs.getInt("cod_user"));
 				u.setUsername(rs.getString("username"));
 				u.setTipo(rs.getInt("tipo"));
 				u.setNombre(rs.getString("nombre"));
@@ -111,7 +111,7 @@ public class DataUsuario {
 		PreparedStatement stmt = null;
 		ResultSet keyRs = null;
 		try {
-			stmt=DbConnector.getInstancia().getConn().prepareStatement("insert into usuarios(username,password,tipo,nombre,apellido) values(?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
+			stmt=DbConnector.getInstancia().getConn().prepareStatement("insert into usuario(username,password,tipo,nombre,apellido) values(?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
 			
 			stmt.setString(1, u.getUsername());
 			stmt.setString(2, u.getPassword());
@@ -143,7 +143,7 @@ public class DataUsuario {
 		PreparedStatement stmt = null;
 		
 		try {
-			stmt=DbConnector.getInstancia().getConn().prepareStatement("update usuarios set username = ?, password = ?, tipo = ?, nombre = ?, apellido = ? where cod_usuario=?");
+			stmt=DbConnector.getInstancia().getConn().prepareStatement("update usuario set username = ?, password = ?, tipo = ?, nombre = ?, apellido = ? where cod_user=?");
 			stmt.setString(1, u.getUsername());
 			stmt.setString(2, u.getPassword());
 			stmt.setInt(3, u.getTipo());
@@ -168,7 +168,7 @@ public class DataUsuario {
 		PreparedStatement stmt = null;
 		
 		try {
-			stmt=DbConnector.getInstancia().getConn().prepareStatement("delete from usuarios where cod_usuario=?");
+			stmt=DbConnector.getInstancia().getConn().prepareStatement("delete from usuario where cod_user=?");
 			stmt.setInt(1, u.getCodUser());
 			stmt.executeUpdate();
 		} catch(SQLException e) {

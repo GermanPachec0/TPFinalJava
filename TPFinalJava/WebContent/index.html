@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta charset="ISO-8859-1">
     <link rel="icon" href="https://getbootstrap.com/favicon.ico">
-    
+
     <title>Java Web Intro</title>
 
     <!-- Bootstrap core CSS -->
@@ -15,9 +16,21 @@
     <!-- Custom styles for this template -->
     <link href="styles/signin.css" rel="stylesheet">
   </head>
-<body>
-	<form action="/prueba.jsp">
-      <a href= "../prueba.jsp">prueba</a>
-     </form> 
-</body>
-</html>
+
+  <body class="text-center">
+    <form class="form-signin" action="signin" method="post">
+      <img class="mb-4" src="styles/bootstrap-solid.html" alt="" width="72" height="72">
+      <h1 class="h3 mb-3 font-weight-normal">Log In</h1>
+      <label for="inputUsername" class="sr-only">Usuario</label>
+      <input id="inputUsername" name="username" class="form-control" placeholder="Nombre de Usuario" required="" autofocus="" type="username">
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input id="inputPassword" name="password" class="form-control" placeholder="Password" required="" type="password">
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Iniciar Sesión</button>
+      <p class="mt-5 mb-3 text-muted">© 2017-2018</p>
+      
+      <!--<a href= "../prueba.jsp">prueba</a>-->
+    </form>
+  
+
+</body></html>
+
