@@ -50,7 +50,6 @@ public class ListaAnalisis extends HttpServlet {
 				//this.accionDefault(request,response);
 			}
 		
-		response.getWriter().append("Agregado con exito ").append(request.getContextPath());
 		
 		
 	}
@@ -88,7 +87,7 @@ public class ListaAnalisis extends HttpServlet {
 	
 	
 	
-	private void insertarAnalisis(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	private void insertarAnalisis(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		
 		String descripcion = request.getParameter("descripcion");
@@ -97,7 +96,8 @@ public class ListaAnalisis extends HttpServlet {
 		analisis.setDescripcion(descripcion);
 		analisis.setPrecio(precio);
 		new LogicAnalisis().add(analisis);
-		response.getWriter().append("Agregado con exito ").append(request.getContextPath());
+		request.getRequestDispatcher("/ConsultaAnalisis.jsp").forward(request, response);
+
 	}
 
 	private void editarAnalisis(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
