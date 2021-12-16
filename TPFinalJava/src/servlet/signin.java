@@ -52,7 +52,7 @@ public class signin extends HttpServlet {
 		user = ctrl.validate(user);
 		if(user != null) {
 			request.getSession().setAttribute("usuario", user);
-			request.getRequestDispatcher("./ConsultaAnalisis.jsp").forward(request, response);
+			request.getRequestDispatcher("/ConsultaAnalisis.jsp").forward(request, response);
 			
 		}else {
 			response.getWriter().append("Usuario o contraseña incorrectos");
