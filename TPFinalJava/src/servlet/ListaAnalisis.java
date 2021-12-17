@@ -49,9 +49,6 @@ public class ListaAnalisis extends HttpServlet {
 			else {
 				//this.accionDefault(request,response);
 			}
-		
-		
-		
 	}
 
 	
@@ -61,11 +58,13 @@ public class ListaAnalisis extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+	
 		
 		String accion = request.getParameter("accion");
 		if(accion!=null)
 		{
+			
+			
 			switch (accion) {
 			case "insertar":
 			this.insertarAnalisis(request,response);break;
@@ -82,6 +81,8 @@ public class ListaAnalisis extends HttpServlet {
 			else {
 				//this.accionDefault(request,response);
 			}
+		
+		doGet(request, response);
 		
 		}
 	
@@ -108,14 +109,14 @@ public class ListaAnalisis extends HttpServlet {
 		an.setCodAnalisis(idAnalisis);
 		Analisis analisis = new LogicAnalisis().getByCod(an);
 		request.setAttribute("analisis", analisis);
-		request.getRequestDispatcher("/EditarAnalisis.jsp").forward(request, response);
+		request.getRequestDispatcher("/ConsultaAnalisis.jsp").forward(request, response);
 		
 	}
 	
 	private void modificarAnalisis(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		int idAnalisis = Integer.parseInt(request.getParameter("idAnalisis"));
+		int idAnalisis = Integer.parseInt(request.getParameter("id"));
 		Analisis an = new Analisis();
 		an.setCodAnalisis(idAnalisis);
 		Analisis analisisActual= new LogicAnalisis().getByCod(an);
@@ -126,7 +127,7 @@ public class ListaAnalisis extends HttpServlet {
 		analisisActual.setPrecio(precio);
 		
 		new LogicAnalisis().update(analisisActual);
-		//this.accionDefault(request,response);
+		request.getRequestDispatcher("/ConsultaAnalisis.jsp").forward(request, response);
 		 
 		
 	}
@@ -140,7 +141,7 @@ public class ListaAnalisis extends HttpServlet {
 		
 		new LogicAnalisis().remove(an);
 		
-		//this.accionDefault(request,response);
+		
 		
 	}
 	

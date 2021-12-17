@@ -28,6 +28,10 @@
     
     <%
     	LinkedList<Analisis> la = new LogicAnalisis().getAll();
+    
+      
+        
+    	
     %>
 </head>
 
@@ -59,7 +63,7 @@
 <div>
 <br>
 </div>
-  
+   <!-- Consulta Analisis -->
   <table class="table table-fixed table-condensed">
     <thead class="table-dark">
       <tr>
@@ -76,50 +80,100 @@
         <td><%= an.getCodAnalisis()%></td>
         <td><%=an.getDescripcion() %></td>
         <td><%=an.getPrecio() %></td>
-        <td><a>Editar</a></td>
+        <td><a data-bs-toggle="modal" data-bs-target="#modalModificar" data-bs-whatever="@mdo" href="ListaAnalisis?accion=editar&idAnalisis=<%=an.getCodAnalisis()%>">Editar</a></td>
         <td><a>Eliminar</a></td>
       </tr>
       <%} %>
      
     </tbody>
   </table>
-  
 
-  
-  <button type="button" class="btn btn-success">Editar</button>
   <button type="button" class="btn btn-danger">Eliminar</button>
- 
    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Agregar Analisis </button>
   
+  
+
+      <!-- Formulario Modal emergente INSERT -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Modal title</h5>
+        <h5 class="modal-title">Agregar Analisis</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
     <div class="modal-body">
-    <form action="ListaAnalisis" method ="post" class="was-validated">
-		<div class="modal-body">
-			<div class="form-group">
-				<label for="Descripcion">Descripcion</label>
-				<input type="text" class="form-control" name="descripcion" required>
-			</div>
-			<div class="form-group">
-			<label for="Precio">Precio</label>
-			<input type="text" class="form-control" name="precio" required>
-			</div>
-		</div>
-		
-		<div class="modal-footer">
-		<button type="submit" class="btn btn-primary" name="accion" value="insertar" data-bs-dismiss="modal">Agregar Analisis</button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-       
-        </div>
-	</form>  
+		    <form action="ListaAnalisis" method ="post" class="was-validated">
+				<div class="modal-body">
+					<div class="form-group">
+						<label for="Descripcion">Descripcion</label>
+						<input type="text" class="form-control" name="descripcion" required>
+					</div>
+					<div class="form-group">
+					<label for="Precio">Precio</label>
+					<input type="text" class="form-control" name="precio" required>
+					</div>
+				</div>
+				
+				<div class="modal-footer">
+				<button type="submit" class="btn btn-primary" name="accion" value="insertar" data-bs-dismiss="modal">Agregar Analisis</button>
+		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+		       
+		        </div>
+		    </form>  
+    	</div> 
     </div>
-   
+  </div>
+</div>
+
+
+      <!-- Formulario Modal emergente Modificar -->
+  
+  
       
+<div class="modal fade" id="modalModificar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modificar Analisis</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+    <div class="modal-body">
+ 
+		    <form action="ListaAnalisis" method ="post" class="was-validated">
+		    
+		        <%
+		      
+		             Analisis myAnalisis = (Analisis)request("analisis");
+					System.out.println(myAnalisis);
+			
+					Analisis anActual  = new Analisis();
+			
+  				%>
+  				
+				<div class="modal-body">
+				
+					<div class="form-group">
+						<label for="ID">ID</label>
+						<input type="hidden" class="form-control" name="id"  value="<%=anActual.getCodAnalisis() %>" required>
+					</div>
+				
+					<div class="form-group">
+						<label for="Descripcion">Descripcion</label>
+						<input type="text" class="form-control" name="descripcion" value="<%=anActual.getDescripcion() %>" required>
+					</div>
+					<div class="form-group">
+					<label for="Precio">Precio</label>
+					<input type="text" class="form-control" name="precio" value="<%= anActual.getPrecio() %>" required>
+					</div>
+				</div>
+				
+				<div class="modal-footer">
+				<button type="submit" class="btn btn-primary" name="accion" value="modificar" data-bs-dismiss="modal">Editar Analisis</button>
+		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+		       
+		        </div>
+		    </form>  
+    	</div> 
     </div>
   </div>
 </div>

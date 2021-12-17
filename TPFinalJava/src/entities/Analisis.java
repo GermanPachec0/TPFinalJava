@@ -25,4 +25,5 @@ public class Analisis {
 		this.codAnalisis = codAnalisis;
 	}
 	
+	
 }
