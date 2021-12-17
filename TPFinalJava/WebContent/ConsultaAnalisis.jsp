@@ -28,10 +28,6 @@
     
     <%
     	LinkedList<Analisis> la = new LogicAnalisis().getAll();
-    
-      
-        
-    	
     %>
 </head>
 
@@ -80,20 +76,18 @@
         <td><%= an.getCodAnalisis()%></td>
         <td><%=an.getDescripcion() %></td>
         <td><%=an.getPrecio() %></td>
-        <td><a data-bs-toggle="modal" data-bs-target="#modalModificar" data-bs-whatever="@mdo" href="ListaAnalisis?accion=editar&idAnalisis=<%=an.getCodAnalisis()%>">Editar</a></td>
-        <td><a>Eliminar</a></td>
+        <td><a href="ListaAnalisis?accion=editar&idAnalisis=<%=an.getCodAnalisis()%>">Editar</a></td>
+        <td><a href="ListaAnalisis?accion=eliminar&id=<%=an.getCodAnalisis()%>">Eliminar</a></td>
       </tr>
       <%} %>
      
     </tbody>
   </table>
-
-  <button type="button" class="btn btn-danger">Eliminar</button>
-   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Agregar Analisis </button>
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Agregar Analisis </button>
   
   
+<!-- Formulario Modal emergente INSERT -->
 
-      <!-- Formulario Modal emergente INSERT -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -126,11 +120,9 @@
 </div>
 
 
-      <!-- Formulario Modal emergente Modificar -->
+<!-- Formulario Modal emergente Modificar -->
   
-  
-      
-<div class="modal fade" id="modalModificar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="modalModificar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -140,31 +132,21 @@
     <div class="modal-body">
  
 		    <form action="ListaAnalisis" method ="post" class="was-validated">
-		    
-		        <%
-		      
-		             Analisis myAnalisis = (Analisis)request("analisis");
-					System.out.println(myAnalisis);
-			
-					Analisis anActual  = new Analisis();
-			
-  				%>
-  				
-				<div class="modal-body">
-				
+		    	<div class="modal-body">
 					<div class="form-group">
 						<label for="ID">ID</label>
-						<input type="hidden" class="form-control" name="id"  value="<%=anActual.getCodAnalisis() %>" required>
+						<input type="hidden" class="form-control" name="id"  value="" required>
 					</div>
 				
 					<div class="form-group">
 						<label for="Descripcion">Descripcion</label>
-						<input type="text" class="form-control" name="descripcion" value="<%=anActual.getDescripcion() %>" required>
+						<input type="text" class="form-control" name="descripcion" value="" required>
 					</div>
 					<div class="form-group">
 					<label for="Precio">Precio</label>
-					<input type="text" class="form-control" name="precio" value="<%= anActual.getPrecio() %>" required>
+					<input type="text" class="form-control" name="precio" value="" required>
 					</div>
+					
 				</div>
 				
 				<div class="modal-footer">
@@ -176,25 +158,22 @@
     	</div> 
     </div>
   </div>
+</div>-->
+	
+	
+	
 </div>
-		
-		
-	
-	
-	
-	
-	</div>
 </div>
 
 
 
-  <!-- Optional JavaScript; choose one of the two! -->
+<!-- Optional JavaScript; choose one of the two! -->
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<!-- Option 2: Separate Popper and Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 
 </body>
 </html>
