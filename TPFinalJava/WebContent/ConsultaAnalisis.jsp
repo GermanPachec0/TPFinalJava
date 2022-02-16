@@ -30,35 +30,44 @@
     	LinkedList<Analisis> la = new LogicAnalisis().getAll();
     %>
 </head>
-
-
 <body>
 
-<div class ="container">
-	<div class = "fixed-top">
-		<div class ="row">
-			<div class = "col - 12">
-				<nav class ="navbar navbar-expand-sm bg-dark navbar-dark">
-					<ul class= "navbar-nav">
-						 <li class="nav-item"><a href="#" class ="nav-link">link 1</a>
-						 <li class="nav-item"><a href="#" class ="nav-link">link 1</a>
-						 <li class="nav-item"><a href="#" class ="nav-link">link 1</a>
-						 <li class="nav-item"><a href="#" class ="nav-link">link 1</a>
-					</ul>
-				</nav>
-			</div>
-		</div>
-	</div>
-	
+
+
+
 <div class="container">
 
-<div class="mt-4 p-5 bg-info text-white rounded">
-  <h1>Lista de Analisis</h1>
-</div>
+	<div class="container">
+	
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <!-- Brand/logo -->
+  <a class="navbar-brand" href="#">Logo</a>
+  
+  <!-- Links -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" href="#">Link 1</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Link 2</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Link 3</a>
+    </li>
+  </ul>
+</nav>
+  
+	
 
+		<div class="mt-4 p-5 bg-info text-white rounded">
+		  <h1>Lista de Analisis</h1>
+		</div>
+	</div>
 <div>
 <br>
 </div>
+
+<div class="container">
    <!-- Consulta Analisis -->
   <table class="table table-fixed table-condensed">
     <thead class="table-dark">
@@ -76,92 +85,17 @@
         <td><%= an.getCodAnalisis()%></td>
         <td><%=an.getDescripcion() %></td>
         <td><%=an.getPrecio() %></td>
-        <td><a href="ListaAnalisis?accion=editar&idAnalisis=<%=an.getCodAnalisis()%>">Editar</a></td>
-        <td><a href="ListaAnalisis?accion=eliminar&id=<%=an.getCodAnalisis()%>">Eliminar</a></td>
+        <td><a class="bg-primary text-white" href="ListaAnalisis?accion=editar&idAnalisis=<%=an.getCodAnalisis()%>"><button type="button" class="btn btn-primary">Editar</button></a></td>
+        <td><a class="bg-danger text-white" href="ListaAnalisis?accion=eliminar&id=<%=an.getCodAnalisis()%>"><button type="button" class="btn btn-danger">Eliminar</button></a></td>
       </tr>
       <%} %>
      
     </tbody>
   </table>
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Agregar Analisis </button>
+<button class="btn btn-success" onclick="location.href = 'AgregarAnalisis.jsp'">Agregar Analisis</button>
   
-  
-<!-- Formulario Modal emergente INSERT -->
-
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Agregar Analisis</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-    <div class="modal-body">
-		    <form action="ListaAnalisis" method ="post" class="was-validated">
-				<div class="modal-body">
-					<div class="form-group">
-						<label for="Descripcion">Descripcion</label>
-						<input type="text" class="form-control" name="descripcion" required>
-					</div>
-					<div class="form-group">
-					<label for="Precio">Precio</label>
-					<input type="text" class="form-control" name="precio" required>
-					</div>
-				</div>
-				
-				<div class="modal-footer">
-				<button type="submit" class="btn btn-primary" name="accion" value="insertar" data-bs-dismiss="modal">Agregar Analisis</button>
-		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-		       
-		        </div>
-		    </form>  
-    	</div> 
-    </div>
-  </div>
-</div>
-
-
-<!-- Formulario Modal emergente Modificar -->
-  
-<!-- <div class="modal fade" id="modalModificar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Modificar Analisis</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-    <div class="modal-body">
  
-		    <form action="ListaAnalisis" method ="post" class="was-validated">
-		    	<div class="modal-body">
-					<div class="form-group">
-						<label for="ID">ID</label>
-						<input type="hidden" class="form-control" name="id"  value="" required>
-					</div>
-				
-					<div class="form-group">
-						<label for="Descripcion">Descripcion</label>
-						<input type="text" class="form-control" name="descripcion" value="" required>
-					</div>
-					<div class="form-group">
-					<label for="Precio">Precio</label>
-					<input type="text" class="form-control" name="precio" value="" required>
-					</div>
-					
-				</div>
-				
-				<div class="modal-footer">
-				<button type="submit" class="btn btn-primary" name="accion" value="modificar" data-bs-dismiss="modal">Editar Analisis</button>
-		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-		       
-		        </div>
-		    </form>  
-    	</div> 
-    </div>
-  </div>
-</div>-->
-	
-	
-	
+
 </div>
 </div>
 
