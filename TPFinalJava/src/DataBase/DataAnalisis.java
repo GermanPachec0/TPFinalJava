@@ -1,6 +1,5 @@
 package DataBase;
 
-import entities.Cliente;
 import java.util.LinkedList;
 
 import java.sql.*;
