@@ -7,7 +7,7 @@ import entities.Cliente;
 
 public class DataCliente {
 	
-	public LinkedList<Cliente> GetAll()
+	public LinkedList<Cliente> getAll()
 	{
 		Statement stmt=null;
 		ResultSet rs=null;
@@ -47,7 +47,7 @@ public class DataCliente {
 		return clientes;
 	}
 	
-	public Cliente getByCod(Cliente clienteToSearch) {
+	public Cliente getByCuit(Cliente clienteToSearch) {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		Cliente c = null;
