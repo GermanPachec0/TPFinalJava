@@ -33,7 +33,6 @@ public class DataCliente {
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
-			
 		} finally {
 			try {
 				if(rs!=null) {rs.close();}

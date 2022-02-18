@@ -12,10 +12,10 @@ public class Pedido {
 	private Semilla semilla;
 	private LinkedList<PedidoAnalisis> listAnalisis;
 	
-	public int getCod_pedido() {
+	public int getCodPedido() {
 		return codPedido;
 	}
-	public void setCod_pedido(int cod_pedido) {
+	public void setCodPedido(int cod_pedido) {
 		this.codPedido = cod_pedido;
 	}
 	public Date getFecha_analisis() {
