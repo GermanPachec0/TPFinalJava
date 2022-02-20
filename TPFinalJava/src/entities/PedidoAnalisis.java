@@ -2,15 +2,29 @@ package entities;
 
 public class PedidoAnalisis {
 
+	private int codPedidoAnalisis;
 	private Analisis analisis;
+	private Pedido pedido;
 	private String estado;
 	private String observaciones;
 	
+	public int getCodPedidoAnalisis() {
+		return codPedidoAnalisis;
+	}
+	public void setCodPedidoAnalisis(int codPedidoAnalisis) {
+		this.codPedidoAnalisis = codPedidoAnalisis;
+	}
 	public Analisis getAnalisis() {
 		return analisis;
 	}
 	public void setAnalisis(Analisis analisis) {
 		this.analisis = analisis;
+	}
+	public Pedido getPedido() {
+		return pedido;
+	}
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
 	}
 	public String getEstado() {
 		return estado;
