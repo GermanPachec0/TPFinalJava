@@ -7,6 +7,7 @@ public class PedidoAnalisis {
 	private Pedido pedido;
 	private String estado;
 	private String observaciones;
+	private Estado state;
 	
 	public int getCodPedidoAnalisis() {
 		return codPedidoAnalisis;
@@ -38,5 +39,14 @@ public class PedidoAnalisis {
 	public void setObservaciones(String observaciones) {
 		this.observaciones = observaciones;
 	}
-	
+	public Estado getState() {
+		return state;
+	}
+	public void setState(Estado state) {
+		this.state = state;
+	}
+}
+
+public enum Estado{
+	Untouched, New, Modified, Deleted
 }

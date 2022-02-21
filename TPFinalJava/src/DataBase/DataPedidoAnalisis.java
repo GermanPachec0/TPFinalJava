@@ -29,6 +29,7 @@ public class DataPedidoAnalisis {
 					pa.setAnalisis(new DataAnalisis().getByCod(a));
 					pa.setEstado(rs.getString("estado"));
 					pa.setObservaciones(rs.getString("observaciones"));
+					pa.setEstado("Untouched");
 					lista.add(pa);
 				}
 			}

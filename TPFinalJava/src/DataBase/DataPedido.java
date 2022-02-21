@@ -129,6 +129,66 @@ public class DataPedido {
 	}
 
 	public void update(Pedido p) {
-		//Aun por configurar
+		PreparedStatement stmt = null;
+		try {
+			stmt=DbConnector.getInstancia().getConn().prepareStatement("update pedido set cuit=?, cod_semilla=?,cod_liquidacion=?,fecha_pedido=?,descuento=? where cod_pedido=?");
+			stmt.setString(1, p.getCliente().getCuit());
+			stmt.setInt(2, p.getSemilla().getCodSemilla());
+			stmt.setInt(3, p.getCodLiquidacion());
+			stmt.setDate(4, p.getFechaPedido());
+			stmt.setDouble(5, p.getDescuento());
+			stmt.setInt(6, p.getCodPedido());
+			stmt.executeUpdate();
+			
+			DataPedidoAnalisis dpa = new DataPedidoAnalisis();
+			for(PedidoAnalisis pa : p.getListAnalisis()) {
+				switch (pa.getState()){
+				case Untouched:
+					break;
+				case New:
+					dpa.add(pa);
+					break;
+				case Modified:
+					dpa.update(pa);
+					break;
+				case Deleted:
+					dpa.remove(pa);
+					break;
+				default:
+					break;
+				}
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(stmt!=null) stmt.close();
+				DbConnector.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public void remove(Pedido p) {
+		PreparedStatement stmt = null;
+		try {
+			DataPedidoAnalisis dpa = new DataPedidoAnalisis();
+			for(PedidoAnalisis pa : p.getListAnalisis()) {
+				dpa.remove(pa);
+			}
+			stmt=DbConnector.getInstancia().getConn().prepareStatement("delete from pedido where cod_pedido=?");
+			stmt.setInt(1, p.getCodPedido());
+			stmt.executeUpdate();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(stmt!=null) stmt.close();
+				DbConnector.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }
