@@ -11,7 +11,6 @@ public class DataAnalisis {
 	public LinkedList<Analisis> getAll(){
 		Statement stmt = null;
 		ResultSet rs = null;
-		
 		LinkedList<Analisis> analisis = new LinkedList<>();
 		
 		try {
@@ -24,7 +23,6 @@ public class DataAnalisis {
 					a.setCodAnalisis(rs.getInt("cod_analisis"));
 					a.setPrecio(rs.getDouble("precio"));
 					a.setDescripcion(rs.getString("descripcion"));
-					
 					analisis.add(a);
 				}
 			}
@@ -39,8 +37,6 @@ public class DataAnalisis {
 				e.printStackTrace();
 			}
 		}
-		
-		
 		return analisis;
 	}
 	

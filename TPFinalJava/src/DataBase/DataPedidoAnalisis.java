@@ -23,8 +23,8 @@ public class DataPedidoAnalisis {
 				while(rs.next())
 				{
 					PedidoAnalisis pa = new PedidoAnalisis();
-					Analisis a = new Analisis();
 					pa.setCodPedidoAnalisis(rs.getInt("cod_pedido_analisis"));
+					Analisis a = new Analisis();
 					a.setCodAnalisis(rs.getInt("cod_analisis"));
 					pa.setAnalisis(new DataAnalisis().getByCod(a));
 					pa.setEstado(rs.getString("estado"));

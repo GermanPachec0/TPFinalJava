@@ -11,18 +11,25 @@ public class Pedido {
 	private Cliente cliente;
 	private Semilla semilla;
 	private LinkedList<PedidoAnalisis> listAnalisis;
+	private int codLiquidacion;
 	
+	public Date getFechaPedido() {
+		return fechaPedido;
+	}
+	public void setFechaPedido(Date fechaPedido) {
+		this.fechaPedido = fechaPedido;
+	}
+	public int getCodLiquidacion() {
+		return codLiquidacion;
+	}
+	public void setCodLiquidacion(int codLiquidacion) {
+		this.codLiquidacion = codLiquidacion;
+	}
 	public int getCodPedido() {
 		return codPedido;
 	}
 	public void setCodPedido(int cod_pedido) {
 		this.codPedido = cod_pedido;
-	}
-	public Date getFecha_analisis() {
-		return fechaPedido;
-	}
-	public void setFecha_analisis(Date fecha_analisis) {
-		this.fechaPedido = fecha_analisis;
 	}
 	public double getDescuento() {
 		return descuento;
