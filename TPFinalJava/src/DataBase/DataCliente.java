@@ -24,9 +24,9 @@ public class DataCliente {
 				{
 					Cliente cli = new Cliente();
 					cli.setCuit(rs.getString("cuit"));
-					cli.setRazonSocial("razon_social");
-					cli.setTelefono("telefono");
-					cli.setEmail("email");
+					cli.setRazonSocial(rs.getString("razon_social"));
+					cli.setTelefono(rs.getString("telefono"));
+					cli.setEmail(rs.getString("email"));
 					clientes.add(cli);
 				}
 			}
