@@ -10,7 +10,7 @@ import entities.Semilla;
 
 public class DataPedido {
 	
-	public LinkedList<Pedido> getall(){
+	public LinkedList<Pedido> getAll(){
 		Statement stmt = null;
 		ResultSet rs = null;
 		
