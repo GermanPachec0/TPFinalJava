@@ -15,7 +15,7 @@ public class DataPedidoAnalisis {
 		LinkedList<PedidoAnalisis> lista = new LinkedList<PedidoAnalisis>();
 		
 		try {
-			stmt=DbConnector.getInstancia().getConn().prepareStatement("select cod_pedido_analisis, cod_analisis, estado, observaciones from pedido_analisis where cod_pedido = ?");
+			stmt=DbConnector.getInstancia().getConn().prepareStatement("select cod_pedido_analisis, cod_pedido, cod_analisis, estado, observaciones from pedido_analisis where cod_pedido = ?");
 			stmt.setInt(1, p.getCodPedido());
 			rs = stmt.executeQuery();
 			if(rs != null)
@@ -29,6 +29,7 @@ public class DataPedidoAnalisis {
 					pa.setAnalisis(new DataAnalisis().getByCod(a));
 					pa.setEstado(rs.getString("estado"));
 					pa.setObservaciones(rs.getString("observaciones"));
+					pa.setCodPedido(rs.getInt("cod_pedido"));
 					pa.setEstado("Untouched");
 					lista.add(pa);
 				}
@@ -55,7 +56,7 @@ public class DataPedidoAnalisis {
 		try {
 			stmt=DbConnector.getInstancia().getConn().prepareStatement("insert into pedido_analisis(cod_pedido, cod_analisis, estado, observaciones) values(?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
 			
-			stmt.setInt(1, pa.getPedido().getCodPedido());
+			stmt.setInt(1, pa.getCodPedido());
 			stmt.setInt(2, pa.getAnalisis().getCodAnalisis());
 			stmt.setString(3, pa.getEstado());
 			stmt.setString(4, pa.getObservaciones());
@@ -83,7 +84,7 @@ public class DataPedidoAnalisis {
 		
 		try {
 			stmt=DbConnector.getInstancia().getConn().prepareStatement("update pedido_analisis set cod_pedido =?, cod_analisis=?, estado=?, observaciones=? where cod_pedido_analisis=?");
-			stmt.setInt(1, pa.getPedido().getCodPedido());
+			stmt.setInt(1, pa.getCodPedido());
 			stmt.setInt(2, pa.getAnalisis().getCodAnalisis());
 			stmt.setString(3, pa.getEstado());
 			stmt.setString(4, pa.getObservaciones());

@@ -4,7 +4,7 @@ public class PedidoAnalisis {
 
 	private int codPedidoAnalisis;
 	private Analisis analisis;
-	private Pedido pedido;
+	private int codPedido;
 	private String estado;
 	private String observaciones;
 	private Estado state;
@@ -20,12 +20,6 @@ public class PedidoAnalisis {
 	}
 	public void setAnalisis(Analisis analisis) {
 		this.analisis = analisis;
-	}
-	public Pedido getPedido() {
-		return pedido;
-	}
-	public void setPedido(Pedido pedido) {
-		this.pedido = pedido;
 	}
 	public String getEstado() {
 		return estado;
@@ -44,5 +38,11 @@ public class PedidoAnalisis {
 	}
 	public void setState(Estado state) {
 		this.state = state;
+	}
+	public int getCodPedido() {
+		return codPedido;
+	}
+	public void setCodPedido(int codPedido) {
+		this.codPedido = codPedido;
 	}
 }

@@ -16,7 +16,7 @@ public class LogicPedido {
 		dp = new DataPedido();
 		dpa = new DataPedidoAnalisis();
 	}
-	public LinkedList<Pedido> getall(){
+	public LinkedList<Pedido> getAll(){
 		LinkedList<Pedido> listaPedido = dp.getall();
 		for(Pedido p : listaPedido) {
 			p.setListAnalisis(dpa.getByPedido(p));
@@ -39,7 +39,7 @@ public class LogicPedido {
 			case Untouched:
 				break;
 			case New:
-				
+				pa.set
 			default:
 				break;
 			}
