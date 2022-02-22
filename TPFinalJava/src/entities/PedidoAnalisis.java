@@ -46,7 +46,3 @@ public class PedidoAnalisis {
 		this.state = state;
 	}
 }
-
-public enum Estado{
-	Untouched, New, Modified, Deleted
-}
