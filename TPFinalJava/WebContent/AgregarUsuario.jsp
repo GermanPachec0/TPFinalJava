@@ -12,7 +12,7 @@
     <meta name="author" content="">
     <link rel="icon" href="https://getbootstrap.com/favicon.ico">
 
-<title>Agregar Analisis</title>
+<title>Agregar Usuario</title>
 
  <!-- Bootstrap core CSS -->
     <link href="styles/bootstrap.css" rel="stylesheet">
@@ -28,20 +28,35 @@
 <div class="container">
 
 	<div class="mt-4 p-5 bg-info text-white rounded text-center">
-  		<h1>Agregar Análisis</h1>
+  		<h1>Agregar Usuario</h1>
 	</div>
-   <form action="ListaAnalisis" method ="post" class="was-validated">
+   <form action="UsuarioServlet" method ="post" class="was-validated">
 				<div class="form-group">
-					<label for="Descripcion">Descripcion</label>
-					<input type="text" class="form-control" name="descripcion" required>
+					<label for="Apellido">Apellido</label>
+					<input type="text" class="form-control" name="apellido" required>
 				</div>
 				<div class="form-group">
-					<label for="Precio">Precio</label>
-					<input type="text" class="form-control" name="precio" required>
+					<label for="Nombre">Nombre</label>
+					<input type="text" class="form-control" name="nombre" required>
 				</div>
+				<div class="form-group">
+					<label for="Username">Username</label>
+					<input type="text" class="form-control" name="username" required>
+				</div>
+			
+				<div class="form-group">
+					<label for="Password">Password</label>
+					<input type="text" class="form-control" name="password" required>
+				</div>
+				<div class="form-group">
+					<label for="Tipo">Tipo de Usuario</label>
+					<input type="text" class="form-control" name="tipo" required>
+				</div>
+			
+				
 				<div class="modal-footer">
-					<button type="submit" class="btn btn-primary" name="accion" value="insertar" data-bs-dismiss="modal">Agregar Analisis</button>
-			        <button type="button" class="btn btn-secondary" onclick="location.href = 'ConsultaAnalisis.jsp'">Cerrar </button>
+					<button type="submit" class="btn btn-primary" name="accion" value="insertar" data-bs-dismiss="modal">Agregar Cliente</button>
+			        <button type="button" class="btn btn-secondary" onclick="location.href = 'ListaCliente.jsp'">Cerrar</button>
 		        </div>
 	</form>  
 
