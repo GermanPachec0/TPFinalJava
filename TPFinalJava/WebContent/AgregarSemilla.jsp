@@ -12,7 +12,7 @@
     <meta name="author" content="">
     <link rel="icon" href="https://getbootstrap.com/favicon.ico">
 
-<title>Agregar Analisis</title>
+<title>Agregar Semilla</title>
 
  <!-- Bootstrap core CSS -->
     <link href="styles/bootstrap.css" rel="stylesheet">
@@ -28,20 +28,21 @@
 <div class="container">
 
 	<div class="mt-4 p-5 bg-info text-white rounded text-center">
-  		<h1>Agregar Análisis</h1>
+  		<h1>Agregar Semilla</h1>
 	</div>
-   <form action="ListaAnalisis" method ="post" class="was-validated">
+   <form action="SemillaServlet" method ="post" class="was-validated">
 				<div class="form-group">
-					<label for="Descripcion">Descripcion</label>
-					<input type="text" class="form-control" name="descripcion" required>
+					<label for="Especie">Especie</label>
+					<input type="text" class="form-control" name="especie" required>
 				</div>
 				<div class="form-group">
-					<label for="Precio">Precio</label>
-					<input type="text" class="form-control" name="precio" required>
+					<label for="Raza">Raza</label>
+					<input type="text" class="form-control" name="raza" required>
 				</div>
+			
 				<div class="modal-footer">
-					<button type="submit" class="btn btn-primary" name="accion" value="insertar" data-bs-dismiss="modal">Agregar Analisis</button>
-			        <button type="button" class="btn btn-secondary" onclick="location.href = 'ConsultaAnalisis.jsp'">Cerrar </button>
+					<button type="submit" class="btn btn-primary" name="accion" value="insertar" data-bs-dismiss="modal">Agregar Semilla</button>
+			        <button type="button" class="btn btn-secondary" onclick="location.href = 'ListaSemilla.jsp'">Cerrar</button>
 		        </div>
 	</form>  
 

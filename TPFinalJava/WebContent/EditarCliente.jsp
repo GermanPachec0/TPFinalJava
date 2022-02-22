@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@page import="entities.Cliente"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,42 +12,57 @@
     <meta name="author" content="">
     <link rel="icon" href="https://getbootstrap.com/favicon.ico">
 
-<title>Agregar Analisis</title>
 
- <!-- Bootstrap core CSS -->
+<title>Editar Cliente</title>
+
+  <!-- Bootstrap core CSS -->
     <link href="styles/bootstrap.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     
 
     <!-- Custom styles for this template -->
     <link href="styles/signin.css" rel="stylesheet">
-  
+    
+    <link href="styles/bootstrap.min.css" rel="stylesheet">
+    
 </head>
 <body>
+<div class="container-xl">
 
-<div class="container">
-
-	<div class="mt-4 p-5 bg-info text-white rounded text-center">
-  		<h1>Agregar Análisis</h1>
-	</div>
-   <form action="ListaAnalisis" method ="post" class="was-validated">
-				<div class="form-group">
-					<label for="Descripcion">Descripcion</label>
-					<input type="text" class="form-control" name="descripcion" required>
-				</div>
-				<div class="form-group">
-					<label for="Precio">Precio</label>
-					<input type="text" class="form-control" name="precio" required>
-				</div>
-				<div class="modal-footer">
-					<button type="submit" class="btn btn-primary" name="accion" value="insertar" data-bs-dismiss="modal">Agregar Analisis</button>
-			        <button type="button" class="btn btn-secondary" onclick="location.href = 'ConsultaAnalisis.jsp'">Cerrar </button>
-		        </div>
-	</form>  
-
+<div class="mt-4 p-5 bg-info text-white rounded">
+  <h1>Editar Semilla</h1>
 </div>
 
+<form action="ClienteServlet" method ="post" class="was-validated"><%
+			Cliente cliActual  = (Cliente)request.getAttribute("Cliente");
+			
+			if(cliActual==null){
+				cliActual = new Cliente();
+			}
+		%>
+		<div class="form-group">
+			<label for="ID">CUIT</label>
+			<input type="text" class="form-control" name="cuit"  value="<%=cliActual.getCuit() %>" readonly required>
+		</div>
+		<div class="form-group">
+			<label for="Email">Email</label>
+			<input type="text" class="form-control" name="email" value="<%=cliActual.getEmail()%>"  required>
+		</div>
+		<div class="form-group">
+		<label for="Razon Social">Razon Social</label>
+		<input type="text" class="form-control" name="razonSocial" value="<%= cliActual.getRazonSocial()%>" required>
+		</div>
+		<div class="form-group">
+		<label for="Telefono">Telefono</label>
+		<input type="text" class="form-control" name="telefono" value="<%= cliActual.getTelefono()%>" required>
+		</div>
+		
+	<button type="submit" class="btn btn-primary" name="accion" value="modificar">Editar Cliente</button>
+    <button type="button" class="btn btn-secondary" onclick="location.href = 'ListaCliente.jsp'">Cerrar </button>
+      
+</form>  
 
+</div>
 
 <!-- Option 1: Bootstrap Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

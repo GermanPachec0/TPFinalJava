@@ -12,7 +12,7 @@
     <meta name="author" content="">
     <link rel="icon" href="https://getbootstrap.com/favicon.ico">
 
-<title>Agregar Analisis</title>
+<title>Agregar Cliente</title>
 
  <!-- Bootstrap core CSS -->
     <link href="styles/bootstrap.css" rel="stylesheet">
@@ -28,20 +28,29 @@
 <div class="container">
 
 	<div class="mt-4 p-5 bg-info text-white rounded text-center">
-  		<h1>Agregar Análisis</h1>
+  		<h1>Agregar Cliente</h1>
 	</div>
-   <form action="ListaAnalisis" method ="post" class="was-validated">
+   <form action="ClienteServlet" method ="post" class="was-validated">
 				<div class="form-group">
-					<label for="Descripcion">Descripcion</label>
-					<input type="text" class="form-control" name="descripcion" required>
+					<label for="Cuit">Cuit</label>
+					<input type="text" class="form-control" name="cuit" required>
 				</div>
 				<div class="form-group">
-					<label for="Precio">Precio</label>
-					<input type="text" class="form-control" name="precio" required>
+					<label for="Email">Email</label>
+					<input type="text" class="form-control" name="email" required>
 				</div>
+					<div class="form-group">
+					<label for="Razon Social">Razon Social</label>
+					<input type="text" class="form-control" name="razonSocial" required>
+				</div>
+					<div class="form-group">
+					<label for="Telefono">Telefono</label>
+					<input type="text" class="form-control" name="telefono" required>
+				</div>
+				
 				<div class="modal-footer">
-					<button type="submit" class="btn btn-primary" name="accion" value="insertar" data-bs-dismiss="modal">Agregar Analisis</button>
-			        <button type="button" class="btn btn-secondary" onclick="location.href = 'ConsultaAnalisis.jsp'">Cerrar </button>
+					<button type="submit" class="btn btn-primary" name="accion" value="insertar" data-bs-dismiss="modal">Agregar Cliente</button>
+			        <button type="button" class="btn btn-secondary" onclick="location.href = 'ListaCliente.jsp'">Cerrar</button>
 		        </div>
 	</form>  
 
