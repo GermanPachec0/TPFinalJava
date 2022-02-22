@@ -24,7 +24,6 @@ public class DataPedido {
 				while(rs.next()) {
 					Pedido p = new Pedido();
 					p.setCodPedido(rs.getInt("cod_pedido"));
-					p.setListAnalisis(new DataPedidoAnalisis().getByPedido(p));
 					Cliente c = new Cliente();
 					c.setCuit(rs.getString("cuit"));
 					p.setCliente(new DataCliente().getByCuit(c));
@@ -108,12 +107,6 @@ public class DataPedido {
 			keyRs = stmt.getGeneratedKeys();
 			if(keyRs!=null && keyRs.next()) {
 				p.setCodPedido(keyRs.getInt(1));
-			}
-			
-			DataPedidoAnalisis dpa = new DataPedidoAnalisis();
-			for(PedidoAnalisis pa : p.getListAnalisis()) {
-				pa.setPedido(p);
-				dpa.add(pa);
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
