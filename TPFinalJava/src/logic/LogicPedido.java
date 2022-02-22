@@ -39,7 +39,12 @@ public class LogicPedido {
 			case Untouched:
 				break;
 			case New:
-				pa.set
+				pa.setCodPedido(p.getCodPedido());
+				dpa.add(pa);
+			case Modified:
+				dpa.update(pa);
+			case Deleted:
+				dpa.remove(pa);
 			default:
 				break;
 			}

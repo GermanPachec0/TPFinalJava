@@ -6,7 +6,6 @@ import java.util.LinkedList;
 import entities.Cliente;
 import entities.Liquidacion;
 import entities.Pedido;
-import entities.PedidoAnalisis;
 import entities.Semilla;
 
 public class DataPedido {
@@ -132,25 +131,6 @@ public class DataPedido {
 			stmt.setDouble(5, p.getDescuento());
 			stmt.setInt(6, p.getCodPedido());
 			stmt.executeUpdate();
-			
-			DataPedidoAnalisis dpa = new DataPedidoAnalisis();
-			for(PedidoAnalisis pa : p.getListAnalisis()) {
-				switch (pa.getState()){
-				case Untouched:
-					break;
-				case New:
-					dpa.add(pa);
-					break;
-				case Modified:
-					dpa.update(pa);
-					break;
-				case Deleted:
-					dpa.remove(pa);
-					break;
-				default:
-					break;
-				}
-			}
 		} catch(SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -166,10 +146,6 @@ public class DataPedido {
 	public void remove(Pedido p) {
 		PreparedStatement stmt = null;
 		try {
-			DataPedidoAnalisis dpa = new DataPedidoAnalisis();
-			for(PedidoAnalisis pa : p.getListAnalisis()) {
-				dpa.remove(pa);
-			}
 			stmt=DbConnector.getInstancia().getConn().prepareStatement("delete from pedido where cod_pedido=?");
 			stmt.setInt(1, p.getCodPedido());
 			stmt.executeUpdate();
