@@ -39,7 +39,7 @@ public class LogicPedido {
 			case Untouched:
 				break;
 			case New:
-				pa.
+				
 			default:
 				break;
 			}
