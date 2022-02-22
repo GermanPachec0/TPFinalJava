@@ -17,7 +17,7 @@ public class LogicPedido {
 		dpa = new DataPedidoAnalisis();
 	}
 	public LinkedList<Pedido> getAll(){
-		LinkedList<Pedido> listaPedido = dp.getall();
+		LinkedList<Pedido> listaPedido = dp.getAll();
 		for(Pedido p : listaPedido) {
 			p.setListAnalisis(dpa.getByPedido(p));
 		}
