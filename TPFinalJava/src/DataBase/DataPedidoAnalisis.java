@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.LinkedList;
 
 import entities.Analisis;
+import entities.Estado;
 import entities.Pedido;
 import entities.PedidoAnalisis;
 
@@ -30,7 +31,7 @@ public class DataPedidoAnalisis {
 					pa.setEstado(rs.getString("estado"));
 					pa.setObservaciones(rs.getString("observaciones"));
 					pa.setCodPedido(rs.getInt("cod_pedido"));
-					pa.setEstado("Untouched");
+					pa.setState(Estado.Untouched);
 					lista.add(pa);
 				}
 			}
