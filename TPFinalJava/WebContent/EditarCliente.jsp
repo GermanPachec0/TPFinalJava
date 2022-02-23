@@ -41,7 +41,7 @@
 			}
 		%>
 		<div class="form-group">
-			<label for="ID">CUIT</label>
+			<label for="CUIT">CUIT</label>
 			<input type="text" class="form-control" name="cuit"  value="<%=cliActual.getCuit() %>" readonly required>
 		</div>
 		<div class="form-group">
