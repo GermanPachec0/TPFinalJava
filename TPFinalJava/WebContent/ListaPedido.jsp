@@ -31,6 +31,7 @@
     
     <%
     	LinkedList<Pedido> listaPed = new LogicPedido().getAll();
+    	request.getSession().setAttribute("pedido", null);
     %>
 </head>
 <body>
@@ -122,7 +123,7 @@
      	
     </tbody>
   </table>
-
+<button class="btn btn-success" onclick="location.href = 'AgregarPedido.jsp'">Agregar Pedido</button>
 </div>
 </div>
 

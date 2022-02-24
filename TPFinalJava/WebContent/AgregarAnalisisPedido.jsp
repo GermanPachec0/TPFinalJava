@@ -1,3 +1,8 @@
+<%@page import="entities.Cliente"%>
+<%@page import="java.util.LinkedList"%>
+<%@page import="logic.LogicCliente"%>
+<%@page import="logic.LogicAnalisis"%>
+<%@page import="entities.Analisis"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -11,8 +16,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="https://getbootstrap.com/favicon.ico">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-<title>Agregar Cliente</title>
+<title>Agregar Pedido</title>
 
  <!-- Bootstrap core CSS -->
     <link href="styles/bootstrap.css" rel="stylesheet">
@@ -21,37 +29,41 @@
 
     <!-- Custom styles for this template -->
     <link href="styles/signin.css" rel="stylesheet">
-  
+  <%LinkedList<Analisis> listaAna = new LogicAnalisis().getAll();
+    
+  %>
 </head>
 <body>
 
 <div class="container">
 
 	<div class="mt-4 p-5 bg-info text-white rounded text-center">
-  		<h1>Agregar Cliente</h1>
+  		<h1>Agregar Analisis al Pedido</h1>
 	</div>
-   <form action="ClienteServlet" method ="post" class="was-validated">
-				<div class="form-group">
-					<label for="Cuit">Cuit</label>
-					<input type="text" class="form-control" name="cuit" required>
-				</div>
-				<div class="form-group">
-					<label for="Email">Email</label>
-					<input type="text" class="form-control" name="email" required>
-				</div>
-				<div class="form-group">
-					<label for="Razon Social">Razon Social</label>
-					<input type="text" class="form-control" name="razonSocial" required>
-				</div>
-				<div class="form-group">
-					<label for="Telefono">Telefono</label>
-					<input type="text" class="form-control" name="telefono" required>
-				</div>
-				
-				<div class="modal-footer">
-					<button type="submit" class="btn btn-primary" name="accion" value="insertar" data-bs-dismiss="modal">Agregar Cliente</button>
-			        <button type="button" class="btn btn-secondary" onclick="location.href = 'ListaCliente.jsp'">Cerrar</button>
-		        </div>
+  <br>
+   
+   <form action="AgregarAnalisisPedido" method ="post" class="was-validated" >
+    	<div class="form-group">
+  			<label for="sel1">Seleccionar Analisis</label>
+  		   	
+  				<select class="form-control" id="sel1" name="codAnalisis">
+  				<%for(Analisis ana : listaAna){ %>
+					    <option value="<%=ana.getCodAnalisis()%>" ><%=ana.getDescripcion()%></option>
+					<%} %>	    
+  				</select>
+		</div>
+		<div class="form-group">
+					<label for="Estado">Estado</label>
+					<input type="text" class="form-control" name="estado">
+		</div>
+		<div class="form-group">
+					<label for="Observaciones">Observaciones</label>
+					<input type="text" class="form-control" name="observaciones">
+		</div>
+
+		<button type="submit" class="btn btn-primary" name="accion" value="agregarAnalisis">Confirmar</button>
+		<button type="button" class="btn btn-secondary" onclick="location.href = 'AgregarPedido.jsp'">Cerrar </button>
+		
 	</form>  
 
 </div>
