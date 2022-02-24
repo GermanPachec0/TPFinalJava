@@ -30,8 +30,9 @@ public class LogicPedido {
 		dp.add(p);
 		for(PedidoAnalisis pa : p.getListAnalisis()) {
 			System.out.println(pa.getAnalisis().getDescripcion());
+			System.out.println(pa.getAnalisis().getCodAnalisis());
+			System.out.println("Holaaa");
 			dpa.add(pa);
-			
 		}
 	}
 	public void update(Pedido p) {
@@ -56,7 +57,7 @@ public class LogicPedido {
 		}
 	}
 	public void remove(Pedido p) {
-		for(PedidoAnalisis pa : p.getListAnalisis()) {
+		for(PedidoAnalisis pa : dpa.getByPedido(p)) {
 			dpa.remove(pa);
 		}
 		dp.remove(p);
