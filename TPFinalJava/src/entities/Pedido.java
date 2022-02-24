@@ -12,6 +12,7 @@ public class Pedido {
 	private Semilla semilla;
 	private LinkedList<PedidoAnalisis> listAnalisis;
 	private int codLiquidacion;
+	private Estado state;
 	
 	public Date getFechaPedido() {
 		return fechaPedido;
@@ -54,5 +55,11 @@ public class Pedido {
 	}
 	public void setListAnalisis(LinkedList<PedidoAnalisis> listAnalisis) {
 		this.listAnalisis = listAnalisis;
+	}
+	public Estado getState() {
+		return state;
+	}
+	public void setState(Estado state) {
+		this.state = state;
 	}
 }

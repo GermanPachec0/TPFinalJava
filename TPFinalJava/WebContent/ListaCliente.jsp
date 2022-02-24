@@ -1,4 +1,5 @@
 <%@page import="entities.Cliente"%>
+<%@page import="entities.Usuario"%>
 <%@page import="java.util.LinkedList"%>
 <%@page import="logic.LogicCliente"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -27,44 +28,55 @@
     
     <%
     	LinkedList<Cliente> listaCli = new LogicCliente().getAll();
+   		Usuario usr = (Usuario)request.getSession().getAttribute("usuario");
+   		if(usr == null){
+   			request.setAttribute("titulo", "Acceso Denegado");
+   			request.setAttribute("mensage", "Usted no ha iniciado sesión correctamente o carece de los permisos necesarios para acceder a esta página.");
+   			request.setAttribute("pagina", "Menu Principal");
+   			request.setAttribute("direccion", "./MenuPrincipal.jsp");
+   			request.getRequestDispatcher("/Advertencia.jsp").forward(request, response);
+   		}
     %>
 </head>
 <body>
 
 
+<div class="fixed-top">
+	
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	  <!-- Brand/logo -->
+	  <a class="navbar-brand mb-0 h1" href="MenuPrincipal.jsp">Menú</a>
+	  
+	  <!-- Links -->
+	  <ul class="navbar-nav">
+	    <li class="nav-item">
+	      <a class="nav-link" href="ListaPedido.jsp">Pedidos</a>
+	    </li>
+	    <li class="nav-item">
+	      <a class="nav-link" href="ListaLiquidacion.jsp">Liquidación</a>
+	    </li>
+	    <li class="nav-item">
+	      <a class="nav-link" href="ListaCliente.jsp">Clientes</a>
+	    </li>
+	    <li class="nav-item">
+	      <a class="nav-link" href="ConsultaAnalisis.jsp">Análisis</a>
+	    </li>
+	    <li class="nav-item">
+	      <a class="nav-link" href="ListaSemilla.jsp">Semillas</a>
+	    </li>
+	    <%if(usr.getTipo() == 0){%>
+	    <li class="nav-item">
+	      <a class="nav-link" href="ListaUsuario.jsp">Usuarios</a>
+	    </li>
+	    <%}%>
+	  </ul>
+	</nav>
+	<br>
+	
 <div class="container">
-
-	<div class="container">
-	
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <!-- Brand/logo -->
-  <a class="navbar-brand" href="#">Logo</a>
-  
-  <!-- Links -->
-  <ul class="navbar-nav">
-    <li class="nav-item">
-      <a class="nav-link" href="#">Link 1</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Link 2</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Link 3</a>
-    </li>
-  </ul>
-</nav>
-  
-	
-
-		<div class="mt-4 p-5 bg-info text-white rounded">
-		  <h1>Lista de Clientes</h1>
-		</div>
+	<div class="mt-4 p-5 bg-info text-white rounded">
+	  <h1>Lista de Clientes</h1>
 	</div>
-<div>
-<br>
-</div>
-
-<div class="container">
    <!-- Lista Cliente -->
   <table class="table table-fixed table-condensed">
     <thead class="table-dark">

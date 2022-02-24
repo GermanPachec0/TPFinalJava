@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.LinkedList;
 
 import entities.Cliente;
+import entities.Estado;
 import entities.Liquidacion;
 import entities.Pedido;
 import entities.Semilla;
@@ -32,6 +33,7 @@ public class DataPedido {
 					p.setCodLiquidacion(rs.getInt("cod_liquidacion"));
 					p.setFechaPedido(rs.getDate("fecha_pedido"));
 					p.setDescuento(rs.getDouble("descuento"));
+					p.setState(Estado.Untouched);
 					
 					pedidos.add(p);
 				}
@@ -73,6 +75,7 @@ public class DataPedido {
 					p.setCodLiquidacion(rs.getInt("cod_liquidacion"));
 					p.setFechaPedido(rs.getDate("fecha_pedido"));
 					p.setDescuento(rs.getDouble("descuento"));
+					p.setState(Estado.Untouched);
 					
 					pedidos.add(p);
 				}

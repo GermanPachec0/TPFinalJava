@@ -27,7 +27,8 @@ public class LogicUsuario {
 		du.remove(u);
 	}
 	public Usuario validate(Usuario u) {
-		//Agregar encriptación de password
-		return du.getByUser(u);
+		Usuario user = null;
+		user = du.getByUser(u);
+		return user;
 	}
 }
