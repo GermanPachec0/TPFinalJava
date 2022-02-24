@@ -36,11 +36,11 @@
     		
     Pedido pedido = (Pedido)request.getSession().getAttribute("pedido");	
     if(pedido == null){
-    pedido = new Pedido();
-    pedido.setListAnalisis(new LinkedList<PedidoAnalisis>());
-    pedido.setCliente(new Cliente());
-    pedido.setSemilla(new Semilla());
-    request.getSession().setAttribute("pedido",pedido);
+	    pedido = new Pedido();
+	    pedido.setListAnalisis(new LinkedList<PedidoAnalisis>());
+	    pedido.setCliente(new Cliente());
+	    pedido.setSemilla(new Semilla());
+	    request.getSession().setAttribute("pedido",pedido);
     }
     
     
@@ -60,9 +60,13 @@
     	
   			<label for="sel1">Seleccionar Cliente</label>
   				<select class="form-control" id="sel1" name="cli">
-  				<%for(Cliente cli : listaCli){ %>    
-					    <option  value="<%=cli.getCuit()%>"><%=cli.getRazonSocial() %></option>
-					<%} %>	    
+  				<%if(pedido.getCliente().getCuit() != null){ %>
+  					<option  value="<%=pedido.getCliente().getCuit()%>"><%=pedido.getCliente().getRazonSocial() %></option>
+  				<%} %>
+  				<%for(Cliente cli : listaCli){ 
+  					if(cli.getCuit() != pedido.getCliente().getCuit()){%>
+				    <option  value="<%=cli.getCuit()%>"><%=cli.getRazonSocial() %></option>
+				<%} } %>	    
   				</select>
 		</div>
 		
@@ -72,7 +76,7 @@
   				<select class="form-control" id="sel1" name="codSem">
   				<%for(Semilla sem : listaSem){ %>
 					    <option value="<%=sem.getCodSemilla()%>" ><%="Especie: "+sem.getEspecie() + " -- Raza: " + sem.getRaza() %></option>
-					<%} %>	    
+					<%} %>
   				</select>
 		</div>
 		

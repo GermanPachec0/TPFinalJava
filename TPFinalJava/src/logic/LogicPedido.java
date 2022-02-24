@@ -29,9 +29,7 @@ public class LogicPedido {
 	public void add(Pedido p) {
 		dp.add(p);
 		for(PedidoAnalisis pa : p.getListAnalisis()) {
-			System.out.println(pa.getAnalisis().getDescripcion());
-			System.out.println(pa.getAnalisis().getCodAnalisis());
-			System.out.println("Holaaa");
+			pa.setCodPedido(p.getCodPedido());
 			dpa.add(pa);
 		}
 	}
