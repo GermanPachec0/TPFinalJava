@@ -16,7 +16,11 @@ public class LogicLiquidacion {
 		dp = new DataPedido();
 	}
 	public LinkedList<Liquidacion> getAll(){
-		return dl.getAll();
+		LinkedList<Liquidacion> listaLiq = dl.getAll();
+		for(Liquidacion l : listaLiq) {
+			l.setPedidos(dp.getByCodLiquidacion(l));
+		}
+		return listaLiq;
 	}
 	public Liquidacion getByCod(Liquidacion liqToSearch) {
 		Liquidacion l = dl.getByCod(liqToSearch);
@@ -50,7 +54,7 @@ public class LogicLiquidacion {
 		}
 	}
 	public void remove(Liquidacion l) {
-		for(Pedido p : l.getPedidos()) {
+		for(Pedido p : dp.getByCodLiquidacion(l)) {
 			p.setCodLiquidacion(0);
 			dp.update(p);
 		}

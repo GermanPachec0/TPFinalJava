@@ -1,4 +1,5 @@
 <%@page import="entities.Liquidacion"%>
+<%@page import="entities.Pedido"%>
 <%@page import="java.util.LinkedList"%>
 <%@page import="logic.LogicLiquidacion"%>
 <%@page import="entities.Usuario"%>
@@ -8,13 +9,15 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+	
 <title>Insert title here</title>
 	<!-- Bootstrap core CSS -->
     <link href="styles/bootstrap.css" rel="stylesheet">
-
+	
     <!-- Custom styles for this template -->
     <link href="styles/signin.css" rel="stylesheet">
-    
     <link href="styles/bootstrap.min.css" rel="stylesheet">
     <%
     	LinkedList<Liquidacion> listaLiq= new LogicLiquidacion().getAll();
@@ -65,7 +68,57 @@
 		<div class="mt-4 p-5 bg-info text-white rounded">
 		  <h1>Lista de Liquidaciones</h1>
 		</div>
-			
+		<!-- Lista Liquidación -->
+		<table class="table table-fixed table-condensed">
+			<thead class="table-dark">
+				<tr>
+					<th>Código Liquidación</th>
+					<th>Fecha Liquidación</th>
+					<th>Empleado</th>
+					<th>Total</th>
+					<th>Pedidos</th>
+					<th>Editar</th>
+       				<th>Eliminar</th>
+				</tr>
+			</thead>
+			<tbody>
+			<%int index = 0; 
+			for(Liquidacion l : listaLiq){
+			index++;%>
+				<tr>
+					<td><%=l.getCodLiquidacion()%></td>
+					<td><%=l.getFechaLiquidacion()%></td>
+					<td><%=l.getEmpleado().getNombreCompleto()%></td>
+					<td><%=l.getTotal()%></td>
+					<td><button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo<%=index%>">Mostrar Pedidos</button></td>
+					<td><a class="bg-primary text-white" href="LiquidacionServlet?accion=editar&codLiquidacion=<%=l.getCodLiquidacion()%>"><button type="button" class="btn btn-primary">Editar</button></a></td>
+       				<td><a class="bg-danger text-white" href="LiquidacionServlet?accion=eliminar&codLiquidacion=<%=l.getCodLiquidacion()%>"><button type="button" class="btn btn-danger">Eliminar</button></a></td>
+       			</tr>
+       			<thead class="collapse" id="demo<%=index%>">
+		      		<tr>
+				        <th></th>
+				        <th>Código Pedido</th>
+				        <th>Cliente</th>
+				        <th>Descuento</th>
+				        <th>Fecha Pedido</th>
+				      </tr>
+				 </thead>
+       			<tbody class="collapse" id="demo<%=index%>">
+       			<%for(Pedido p: l.getPedidos()){%>
+       				<tr>
+       					<td></td>
+       					<td><%=p.getCodPedido() %> </td>
+				        <td><%=p.getCliente().getRazonSocial()%></td>
+				        <td><%=p.getDescuento() %></td>
+				        <td><%=p.getFechaPedido()%></td>
+				        <td>0</td>
+       				</tr>
+       			<%} %>
+       			</tbody>
+			<%} %>
+			</tbody>
+		</table>
+		<button class="btn btn-success" onclick="location.href = 'AgregarLiquidacion.jsp'">Nueva Liquidación</button>
 	</div>
 </div>
 </body>

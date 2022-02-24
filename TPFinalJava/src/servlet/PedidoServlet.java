@@ -101,14 +101,10 @@ public class PedidoServlet extends HttpServlet {
 			java.util.Date fecha=null;
 			
 			try {
-				System.out.println(request.getParameter("fecha"));
 				fecha = formato.parse(request.getParameter("fecha"));
-				System.out.println(fecha);
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				
-				System.out.println(e);
 			} 
 			
 			double descuento = Double.parseDouble(request.getParameter("descuento"));

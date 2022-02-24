@@ -58,7 +58,7 @@
 		</div>
 		<div class="form-group">
 					<label for="Observaciones">Observaciones</label>
-					<input type="text" class="form-control" name="observaciones">
+					<input type="text" class="form-control" name="observacion">
 		</div>
 
 		<button type="submit" class="btn btn-primary" name="accion" value="agregarAnalisis">Confirmar</button>

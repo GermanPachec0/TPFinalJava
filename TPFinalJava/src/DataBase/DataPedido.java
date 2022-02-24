@@ -72,7 +72,6 @@ public class DataPedido {
 					Semilla s = new Semilla();
 					s.setCodSemilla(rs.getInt("cod_semilla"));
 					p.setSemilla(s);
-					p.setCodLiquidacion(rs.getInt("cod_liquidacion"));
 					p.setFechaPedido(rs.getDate("fecha_pedido"));
 					p.setDescuento(rs.getDouble("descuento"));
 					p.setState(Estado.Untouched);
@@ -129,7 +128,11 @@ public class DataPedido {
 			stmt=DbConnector.getInstancia().getConn().prepareStatement("update pedido set cuit=?, cod_semilla=?,cod_liquidacion=?,fecha_pedido=?,descuento=? where cod_pedido=?");
 			stmt.setString(1, p.getCliente().getCuit());
 			stmt.setInt(2, p.getSemilla().getCodSemilla());
-			stmt.setInt(3, p.getCodLiquidacion());
+			if(p.getCodLiquidacion() == 0) {
+				stmt.setNull(3, java.sql.Types.INTEGER);
+			}else{
+				stmt.setInt(3, p.getCodLiquidacion());
+			}
 			stmt.setDate(4, p.getFechaPedido());
 			stmt.setDouble(5, p.getDescuento());
 			stmt.setInt(6, p.getCodPedido());
