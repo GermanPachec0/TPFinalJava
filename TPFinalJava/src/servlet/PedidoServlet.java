@@ -139,8 +139,14 @@ public class PedidoServlet extends HttpServlet {
 		
 	}
 
-	private void eliminarPedido(HttpServletRequest request, HttpServletResponse response) {
+	private void eliminarPedido(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		int codPed = Integer.parseInt(request.getParameter("codPed"));
+		Pedido pedido = new Pedido();
+		pedido.setCodPedido(codPed);
+		new LogicPedido().remove(pedido);
+		request.getRequestDispatcher("/ListaPedido.jsp").forward(request, response);
 		
 	}
 

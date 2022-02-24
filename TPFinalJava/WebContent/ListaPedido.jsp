@@ -93,8 +93,8 @@
         <td><%=ped.getDescuento() %></td>
         <td><%=ped.getFechaPedido()%></td>
         <td><button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo<%=index%>" >Listar Analisis</button>
-        <td><a class="bg-primary text-white" href="ClienteServlet?accion=editar&cuit=<%=ped.getCodPedido()%>"><button type="button" class="btn btn-primary">Editar</button></a></td>
-        <td><a class="bg-danger text-white" href="ClienteServlet?accion=eliminar&cuit=<%=ped.getCodLiquidacion()%>"><button type="button" class="btn btn-danger">Eliminar</button></a></td>
+        <td><a class="bg-primary text-white" href="PedidoServlet?accion=editar&codPed=<%=ped.getCodPedido()%>"><button type="button" class="btn btn-primary">Editar</button></a></td>
+        <td><a class="bg-danger text-white" href="PedidoServlet?accion=eliminar&codPed=<%=ped.getCodPedido()%>"><button type="button" class="btn btn-danger">Eliminar</button></a></td>
         <thead class="collapse" id="demo<%=index%>">
       		<tr>
 		        <th></th>
