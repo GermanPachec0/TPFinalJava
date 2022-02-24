@@ -15,7 +15,7 @@
 			request.setAttribute("titulo", "Acceso Denegado");
 			request.setAttribute("mensage", "Usted no ha iniciado sesión correctamente o carece de los permisos necesarios apra acceder a esta página.");
 			request.setAttribute("pagina", "Login");
-			request.setAttribute("direccion", "/index.html");
+			request.setAttribute("direccion", "./index.html");
 			request.getRequestDispatcher("/Advertencia.jsp").forward(request, response);
 		}
 	%>

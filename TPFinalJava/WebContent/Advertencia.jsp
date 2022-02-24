@@ -16,11 +16,13 @@
     %>
 </head>
 <body>
-<div class="alert alert-danger" role="alert">
-  <h4 class="alert-heading"><%=titulo%>></h4>
+
+<div class="alert alert-danger fixed-top" role="alert">
+  <h4 class="alert-heading"><%=titulo%></h4>
   <p><%=mensage%></p>
   <hr>
-  <p class="mb-0"><a href="<%=direccion%>>" class="alert-link">Volver a la página de <%=pagina%></a></p>
+  <p class="mb-0"><a href="<%=direccion%>" class="alert-link">Volver a la página de <%=pagina%></a></p>
 </div>
+
 </body>
 </html>

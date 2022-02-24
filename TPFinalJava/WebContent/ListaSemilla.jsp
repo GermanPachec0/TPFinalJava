@@ -1,6 +1,7 @@
 <%@page import="entities.Semilla"%>
 <%@page import="java.util.LinkedList"%>
 <%@page import="logic.LogicSemilla"%>
+<%@page import="entities.Usuario"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -27,6 +28,14 @@
     
     <%
     	LinkedList<Semilla> listaSem = new LogicSemilla().getAll();
+   		Usuario usr = (Usuario)request.getSession().getAttribute("usuario");
+   		if(usr == null){
+   			request.setAttribute("titulo", "Acceso Denegado");
+   			request.setAttribute("mensage", "Usted no ha iniciado sesión correctamente o carece de los permisos necesarios para acceder a esta página.");
+   			request.setAttribute("pagina", "Menu Principal");
+   			request.setAttribute("direccion", "./MenuPrincipal.jsp");
+   			request.getRequestDispatcher("/Advertencia.jsp").forward(request, response);
+   		}
     %>
 </head>
 <body>
@@ -54,15 +63,20 @@
 	    <li class="nav-item">
 	      <a class="nav-link" href="ListaSemilla.jsp">Semillas</a>
 	    </li>
+	    <%if(usr.getTipo() == 0){%>
 	    <li class="nav-item">
 	      <a class="nav-link" href="ListaUsuario.jsp">Usuarios</a>
 	    </li>
+	    <%}%>
 	  </ul>
 	</nav>
 	<br>
-
+	
 	<div class="container">
-	   <!-- Lista Cliente -->
+	<div class="mt-4 p-5 bg-info text-white rounded">
+	  <h1>Lista de Semillas</h1>
+	</div>
+	   <!-- Lista Semillas -->
 	  <table class="table table-fixed table-condensed">
 	    <thead class="table-dark">
 	      <tr>
