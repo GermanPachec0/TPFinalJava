@@ -63,6 +63,7 @@ public class AgregarAnalisisPedido extends HttpServlet {
 		pa.setAnalisis(ana);
 		pa.setObservaciones(observacion);
 		pa.setEstado(estado);
+		pa.setState(entities.Estado.New);
 		
 		pedido.getListAnalisis().add(pa);
 		

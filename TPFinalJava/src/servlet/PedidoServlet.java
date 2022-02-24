@@ -75,7 +75,7 @@ public class PedidoServlet extends HttpServlet {
 			case "eliminar":
 			this.eliminarPedido(request,response);break;
 			case "insertar_def":
-				 this.insertar_defPedido(request,response);
+			this.insertar_defPedido(request,response);
 				
 			default:
 				//this.accionDefault(request,response);
@@ -151,8 +151,15 @@ public class PedidoServlet extends HttpServlet {
 		
 	}
 	
-	private void editarPedido(HttpServletRequest request, HttpServletResponse response) {
+	private void editarPedido(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		int codPedido = Integer.parseInt(request.getParameter("codPed"));		
+		Pedido pedido = new Pedido();
+			pedido.setCodPedido(codPedido);
+			System.out.println(pedido.getCodPedido());
+		pedido = new LogicPedido().getByCod(pedido);
+		request.setAttribute("pedido", pedido);
+		request.getRequestDispatcher("/EditarPedido.jsp").forward(request, response);
 		
 	}
 

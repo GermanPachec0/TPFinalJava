@@ -26,6 +26,13 @@ public class LogicPedido {
 	public LinkedList<Pedido> getByCodLiquidacion(Liquidacion l) {
 		return dp.getByCodLiquidacion(l);
 	}
+	
+	public Pedido getByCod(Pedido p) {
+		Pedido pedido = dp.getByCod(p);
+		pedido.setListAnalisis(dpa.getByPedido(pedido));
+		return pedido;
+	}
+	
 	public void add(Pedido p) {
 		dp.add(p);
 		for(PedidoAnalisis pa : p.getListAnalisis()) {

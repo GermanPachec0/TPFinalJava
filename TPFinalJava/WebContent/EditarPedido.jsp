@@ -31,19 +31,9 @@
 
     <!-- Custom styles for this template -->
     <link href="styles/signin.css" rel="stylesheet">
-  <%LinkedList<Cliente> listaCli = new LogicCliente().getAll();
-    LinkedList<Semilla> listaSem = new LogicSemilla().getAll();
-    		
-    Pedido pedido = (Pedido)request.getSession().getAttribute("pedido");	
-    if(pedido == null){
-	    pedido = new Pedido();
-	    pedido.setListAnalisis(new LinkedList<PedidoAnalisis>());
-	    pedido.setCliente(new Cliente());
-	    pedido.setSemilla(new Semilla());
-	    request.getSession().setAttribute("pedido",pedido);
-    }
-    
-    
+  <%
+    Pedido pedido = (Pedido)request.getAttribute("pedido");
+   	request.getSession().setAttribute("pedido", pedido);
   %>
 </head>
 <body>
@@ -56,14 +46,14 @@
   <br>
    
    <form action="PedidoServlet" method ="post" class="was-validated">
-   
+    	
     	<div class="form-group">
   			<label for="sel1">Seleccionar Cliente</label>
   				<select class="form-control" id="sel1" name="cli">
   				<%if(pedido.getCliente().getCuit() != null){ %>
   					<option  value="<%=pedido.getCliente().getCuit()%>"><%=pedido.getCliente().getRazonSocial() %></option>
   				<%} %>
-  				<%for(Cliente cli : listaCli){ 
+  				<%for(Cliente cli : new LogicCliente().getAll()){ 
   					if(cli.getCuit() != pedido.getCliente().getCuit()){%>
 				    <option  value="<%=cli.getCuit()%>"><%=cli.getRazonSocial() %></option>
 				<%} } %>	    
@@ -72,24 +62,27 @@
 		
 		<div class="form-group">
   			<label for="sel1">Seleccionar Semilla</label>
-  		   	
   				<select class="form-control" id="sel1" name="codSem">
-  				<%for(Semilla sem : listaSem){ %>
+  				<%for(Semilla sem : new LogicSemilla().getAll()){ %>
 					    <option value="<%=sem.getCodSemilla()%>" ><%="Especie: "+sem.getEspecie() + " -- Raza: " + sem.getRaza() %></option>
 					<%} %>
   				</select>
 		</div>
 		
+		
+		
 		<div class="form-group">
-			 <label for="birthday">Fecha de Pedido</label>
+			 <label for="birthday">Cambiar Fecha de Pedido</label>
  			 <input type="date" id="fecha" name="fecha" value="<%=pedido.getFechaPedido()%>" required>
 		</div>
+		
+		
 		<div class="form-group">
-			 <label for="quantity">Elegir Porcentaje de descuento</label>
+			 <label for="quantity">Cambiar Porcentaje de descuento</label>
   			<input type="number" id="quantity" step="0.01" name="descuento" min="0" max="100" value="<%=pedido.getDescuento()%>" >
 		</div>
 	
-		<button type="submit" class="btn btn-primary" name="accion" value="insertar">Agregar analisis al pedido</button>
+		<button type="submit" class="btn btn-primary" name="accion" value="insertar" >Agregar analisis al pedido</button>
 		<br>
 		<br>
 	<table class="table table-fixed table-condensed">
@@ -98,16 +91,21 @@
 	        <th>Codigo Analisis</th>
 	        <th>Descripcion</th>
 	        <th>Precio</th>
+	        <th>Editar</th>
+	        <th>Eliminar</th>
 	      </tr>
 	    </thead>
 	    <tbody>
-	    
+	     <% int i = 0; %>
 	    <%for(PedidoAnalisis pa : pedido.getListAnalisis() ){ %>
 	      <tr>
 	        <td><%=pa.getAnalisis().getDescripcion() %> </td>
 	        <td><%=pa.getEstado() %></td>
 	        <td><%=pa.getObservaciones() %></td>
+	        <td><a class="bg-primary text-white" href="PedidoServlet?accion=editarPA&index=<%=i%>"><button type="button" class="btn btn-primary">Editar</button></a></td>
+       		<td><a class="bg-danger text-white" href="PedidoServlet??accion=eliminarPA&index=<%=i%>"><button type="button" class="btn btn-danger">Eliminar</button></a></td>
 	      </tr>
+	      <%i++;%>
 	      <%} %>
 	     
 	    </tbody>

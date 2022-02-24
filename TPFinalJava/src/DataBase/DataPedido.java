@@ -51,6 +51,8 @@ public class DataPedido {
 		}
 		return pedidos;
 	}
+	
+	
 
 	public LinkedList<Pedido> getByCodLiquidacion(Liquidacion l) {
 		PreparedStatement stmt = null;
@@ -91,6 +93,44 @@ public class DataPedido {
 			}
 		}
 		return pedidos;
+	}
+	
+	public Pedido getByCod(Pedido pedidoToSearch) {
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		Pedido p = null;
+		
+		try {
+			stmt=DbConnector.getInstancia().getConn().prepareStatement("select cod_pedido, cuit, cod_semilla,cod_liquidacion,fecha_pedido,descuento from pedido where cod_pedido = ?");
+			stmt.setInt(1, pedidoToSearch.getCodPedido());
+			rs=stmt.executeQuery();
+			
+			if(rs!=null && rs.next()) {
+				p = new Pedido();
+				p.setCodPedido(rs.getInt("cod_pedido"));
+				Cliente c = new Cliente();
+				c.setCuit(rs.getString("cuit"));
+				p.setCliente(new DataCliente().getByCuit(c));
+				Semilla s = new Semilla();
+				s.setCodSemilla(rs.getInt("cod_semilla"));
+				p.setSemilla(s);
+				p.setCodLiquidacion(rs.getInt("cod_liquidacion"));
+				p.setFechaPedido(rs.getDate("fecha_pedido"));
+				p.setDescuento(rs.getDouble("descuento"));
+				p.setState(Estado.Untouched);
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs!=null) rs.close();
+				if(stmt!=null) stmt.close();
+				DbConnector.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return p;
 	}
 
 	public void add(Pedido p) {
