@@ -53,9 +53,12 @@ public class signin extends HttpServlet {
 		if(user != null) {
 			request.getSession().setAttribute("usuario", user);
 			request.getRequestDispatcher("/MenuPrincipal.jsp").forward(request, response);
-			
 		}else {
-			response.getWriter().append("Usuario o contraseña incorrectos");
+			request.setAttribute("titulo", "No se pudo iniciar sesión");
+			request.setAttribute("mensage", "Usuario o contraseña incorrectos");
+			request.setAttribute("pagina", "Login");
+			request.setAttribute("direccion", "/index.html");
+			request.getRequestDispatcher("/Advertencia.jsp").forward(request, response);
 		}
 	}
 }
