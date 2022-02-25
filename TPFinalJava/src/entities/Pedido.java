@@ -14,6 +14,19 @@ public class Pedido {
 	private int codLiquidacion;
 	private Estado state;
 	
+	
+	public double GetSubTotal() {
+		double total = 0;
+		
+		for(PedidoAnalisis pa : listAnalisis)
+			{
+				total += pa.getAnalisis().getPrecio() ;
+			}
+			return total*((double)1-(descuento*0.01));
+	
+		}
+		
+	
 	public Date getFechaPedido() {
 		return fechaPedido;
 	}
@@ -62,6 +75,9 @@ public class Pedido {
 	public void setState(Estado state) {
 		this.state = state;
 	}
+	
+	
+	
 	@Override
     public boolean equals(Object obj) {
         if (obj == null) {

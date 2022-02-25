@@ -46,10 +46,8 @@ public class LogicPedido {
 		}
 	}
 	public void update(Pedido p) {
-		System.out.println(p.getCodPedido());
 		dp.update(p);
 		for(PedidoAnalisis pa : p.getListAnalisis()) {
-			System.out.println(p.getCodPedido());
 			switch (pa.getState()) {
 			case Untouched:
 				break;

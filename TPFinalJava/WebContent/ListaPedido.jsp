@@ -78,7 +78,9 @@
         <th>Cliente</th>
         <th>Descuento</th>
          <th>Fecha Pedido</th>
+          <th>SubTotal</th>
          <th>Analisis</th>
+        
         <th>Editar</th>
         <th>Eliminar</th>
       </tr>
@@ -92,6 +94,7 @@
         <td><%=ped.getCliente().getRazonSocial()%></td>
         <td><%=ped.getDescuento() %></td>
         <td><%=ped.getFechaPedido()%></td>
+        <td><%=ped.GetSubTotal()%></td>
         <td><button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo<%=index%>" >Listar Analisis</button>
         <td><a class="bg-primary text-white" href="PedidoServlet?accion=editar&codPed=<%=ped.getCodPedido()%>"><button type="button" class="btn btn-primary">Editar</button></a></td>
         <td><a class="bg-danger text-white" href="PedidoServlet?accion=eliminar&codPed=<%=ped.getCodPedido()%>"><button type="button" class="btn btn-danger">Eliminar</button></a></td>
