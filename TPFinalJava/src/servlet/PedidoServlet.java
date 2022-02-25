@@ -12,9 +12,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import entities.Analisis;
 import entities.Cliente;
 import entities.Pedido;
+import entities.PedidoAnalisis;
 import entities.Semilla;
+import logic.LogicAnalisis;
 import logic.LogicCliente;
 import logic.LogicPedido;
 
@@ -47,7 +50,10 @@ public class PedidoServlet extends HttpServlet {
 			case "eliminar":
 			this.eliminarPedido(request,response);break;
 			case "insertar":
-				 this.insertarPedido(request,response);
+		    this.insertarPedido(request,response);
+			case "editarPA":
+			this.editarPA(request,response);	 
+				 
 			default:
 				//this.accionDefault(request,response);
 			}
@@ -59,6 +65,13 @@ public class PedidoServlet extends HttpServlet {
 	}
 
 	
+
+	private void editarPA(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		int index =  Integer.parseInt(request.getParameter("index"));
+		request.setAttribute("index", index);
+		request.getRequestDispatcher("/EditarPA.jsp").forward(request, response);
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -76,6 +89,9 @@ public class PedidoServlet extends HttpServlet {
 			this.eliminarPedido(request,response);break;
 			case "insertar_def":
 			this.insertar_defPedido(request,response);
+			case "modificarPA":
+				this.modificarPA(request,response);
+				
 				
 			default:
 				//this.accionDefault(request,response);
@@ -88,6 +104,29 @@ public class PedidoServlet extends HttpServlet {
 	}
 
 
+
+	private void modificarPA(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Pedido pedido = (Pedido)request.getSession().getAttribute("pedido");
+		int codAnalisis =Integer.parseInt(request.getParameter("codAnalisis"));
+		String estado = request.getParameter("estado");
+		String observacion = request.getParameter("observacion");
+		int index = Integer.parseInt( request.getParameter("index"));
+		
+		PedidoAnalisis paActual=pedido.getListAnalisis().get(index);
+		Analisis an = new Analisis();
+		an.setCodAnalisis(codAnalisis);
+		paActual.setAnalisis(new LogicAnalisis().getByCod(an));
+		paActual.setEstado(estado);
+		paActual.setObservaciones(observacion);
+		if(paActual.getState() != entities.Estado.New) {
+			paActual.setState(entities.Estado.Modified);
+		}
+		
+		request.getRequestDispatcher("/EditarPedido.jsp").forward(request, response);
+	
+		
+		
+	}
 
 	private void insertarPedido(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -148,7 +187,8 @@ public class PedidoServlet extends HttpServlet {
 
 	private void modificarPedido(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
-		
+		Pedido pedido = (Pedido)request.getSession().getAttribute("pedido");
+		new LogicPedido().update(pedido);
 	}
 	
 	private void editarPedido(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
