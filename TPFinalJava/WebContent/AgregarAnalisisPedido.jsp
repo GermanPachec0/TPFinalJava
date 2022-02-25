@@ -3,6 +3,7 @@
 <%@page import="logic.LogicCliente"%>
 <%@page import="logic.LogicAnalisis"%>
 <%@page import="entities.Analisis"%>
+<%@page import="entities.Pedido"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -30,7 +31,7 @@
     <!-- Custom styles for this template -->
     <link href="styles/signin.css" rel="stylesheet">
   <%LinkedList<Analisis> listaAna = new LogicAnalisis().getAll();
-    
+    Pedido p = (Pedido)request.getSession().getAttribute("pedido");
   %>
 </head>
 <body style="background-color:rgb(251, 252, 255);" >
@@ -63,7 +64,7 @@
 		</div>
 
 		<button type="submit" class="btn btn-primary" name="accion" value="agregarAnalisis">Confirmar</button>
-		<button type="button" class="btn btn-secondary" onclick="location.href = 'AgregarPedido.jsp'">Cerrar </button>
+		<button type="button" class="btn btn-secondary" onclick="location.href = '<%=(p.getState() == entities.Estado.New ? "AgregarPedido.jsp" : "EditarPedido.jsp")%>'">Cerrar </button>
 		
 	</form>  
 

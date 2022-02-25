@@ -66,8 +66,11 @@ public class AgregarAnalisisPedido extends HttpServlet {
 		pa.setState(entities.Estado.New);
 		
 		pedido.getListAnalisis().add(pa);
-		
-		request.getRequestDispatcher("/EditarPedido.jsp").forward(request, response);
+		if(pedido.getState() == entities.Estado.New) {
+			request.getRequestDispatcher("/AgregarPedido.jsp").forward(request, response);
+		}else {
+			request.getRequestDispatcher("/EditarPedido.jsp").forward(request, response);
+		}
 	}
 
 	/**

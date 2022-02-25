@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -56,6 +55,8 @@ public class PedidoServlet extends HttpServlet {
 			this.editarPA(request,response);break;
 			case "eliminarPA":
 			this.eliminarPA(request,response);break;
+			case "checking":
+			this.SetCliente(request,response);break;
 				 
 			default:
 				//this.accionDefault(request,response);
@@ -68,6 +69,19 @@ public class PedidoServlet extends HttpServlet {
 	}
 
 	
+
+	private void SetCliente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		String cuit = (String)request.getAttribute("comboCliente");
+		if(cuit != null) {
+			Cliente c = new Cliente();
+			c = new LogicCliente().getByCuit(c);
+			request.getSession().setAttribute("cliente", c);
+		}else {
+			request.getSession().setAttribute("cliente", null);
+		}
+		request.getRequestDispatcher("/ListaPedido.jsp").forward(request, response);
+	}
 
 	private void eliminarPA(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int index =  Integer.parseInt(request.getParameter("index"));
@@ -185,11 +199,35 @@ public class PedidoServlet extends HttpServlet {
 	
 	private void insertar_defPedido(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+		String cuit = request.getParameter("cli");
+		int codSem = Integer.parseInt(request.getParameter("codSem"));
+		
+		java.util.Date fecha=null;
+		
+		try {
+			fecha = formato.parse(request.getParameter("fecha"));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		
+		double descuento = Double.parseDouble(request.getParameter("descuento"));
 		Pedido pedido = (Pedido)request.getSession().getAttribute("pedido");
+		
+		Cliente cli = new Cliente();
+			cli.setCuit(cuit);
+		Semilla sem = new Semilla();
+			sem.setCodSemilla(codSem);
+		Cliente cliente = new LogicCliente().getByCuit(cli);
+		Semilla s = new LogicSemilla().getByCod(sem);
+		pedido.setCliente(cliente);
+		pedido.setSemilla(s);
+		pedido.setFechaPedido(new java.sql.Date(fecha.getTime()));
+		pedido.setDescuento(descuento);
 		
 		new LogicPedido().add(pedido);
 		request.getRequestDispatcher("/ListaPedido.jsp").forward(request, response);
-		
 	}
 
 	private void eliminarPedido(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

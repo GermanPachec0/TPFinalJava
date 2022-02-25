@@ -1,3 +1,4 @@
+<%@page import="entities.Estado"%>
 <%@page import="entities.Cliente"%>
 <%@page import="java.util.LinkedList"%>
 <%@page import="logic.LogicCliente"%>
@@ -40,6 +41,8 @@
 	    pedido.setListAnalisis(new LinkedList<PedidoAnalisis>());
 	    pedido.setCliente(new Cliente());
 	    pedido.setSemilla(new Semilla());
+	    pedido.setFechaPedido(new java.sql.Date(new java.util.Date().getTime()));
+	    pedido.setState(Estado.New);
 	    request.getSession().setAttribute("pedido",pedido);
     }
     
@@ -63,8 +66,8 @@
   				<%if(pedido.getCliente().getCuit() != null){ %>
   					<option  value="<%=pedido.getCliente().getCuit()%>"><%=pedido.getCliente().getRazonSocial() %></option>
   				<%} %>
-  				<%for(Cliente cli : listaCli){ 
-  					if(cli.getCuit() != pedido.getCliente().getCuit()){%>
+  				<%for(Cliente cli : listaCli){
+  					if(!cli.getCuit().equals(pedido.getCliente().getCuit())){%>
 				    <option  value="<%=cli.getCuit()%>"><%=cli.getRazonSocial() %></option>
 				<%} } %>	    
   				</select>
@@ -74,9 +77,13 @@
   			<label for="sel1">Seleccionar Semilla</label>
   		   	
   				<select class="form-control" id="sel1" name="codSem">
-  				<%for(Semilla sem : listaSem){ %>
+  				<%if(pedido.getSemilla().getCodSemilla() != 0){ %>
+  					<option value="<%=pedido.getSemilla().getCodSemilla()%>" ><%="Especie: "+pedido.getSemilla().getEspecie() + " -- Raza: " + pedido.getSemilla().getRaza() %></option>
+  				<%} %>
+  				<%for(Semilla sem : listaSem){ 
+  					if(sem.getCodSemilla() != pedido.getSemilla().getCodSemilla()){%>
 					    <option value="<%=sem.getCodSemilla()%>" ><%="Especie: "+sem.getEspecie() + " -- Raza: " + sem.getRaza() %></option>
-					<%} %>
+				<%} } %>
   				</select>
 		</div>
 		

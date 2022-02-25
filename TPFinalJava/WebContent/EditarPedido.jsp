@@ -37,8 +37,9 @@
     Pedido pedido = (Pedido)request.getSession().getAttribute("pedido");
     if(pedido == null)
     {
-    pedido = (Pedido)request.getAttribute("pedido");
-   	request.getSession().setAttribute("pedido", pedido);
+	    pedido = (Pedido)request.getAttribute("pedido");
+	    pedido.setState(entities.Estado.Modified);
+	   	request.getSession().setAttribute("pedido", pedido);
     }
     		
   %>

@@ -4,6 +4,7 @@ import java.util.LinkedList;
 
 import DataBase.DataPedido;
 import DataBase.DataPedidoAnalisis;
+import entities.Cliente;
 import entities.Liquidacion;
 import entities.Pedido;
 import entities.PedidoAnalisis;
@@ -18,6 +19,18 @@ public class LogicPedido {
 	}
 	public LinkedList<Pedido> getAll(){
 		LinkedList<Pedido> listaPedido = dp.getAll();
+		for(Pedido p : listaPedido) {
+			p.setListAnalisis(dpa.getByPedido(p));
+		}
+		return listaPedido;
+	}
+	public LinkedList<Pedido> getByCliente(Cliente c){
+		LinkedList<Pedido> listaPedido;
+		if(c.getCuit().isBlank()) {
+			listaPedido = dp.getAll();
+		}else {
+			listaPedido = dp.getByCliente(c);
+		}
 		for(Pedido p : listaPedido) {
 			p.setListAnalisis(dpa.getByPedido(p));
 		}
