@@ -72,9 +72,10 @@ public class PedidoServlet extends HttpServlet {
 
 	private void SetCliente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String cuit = (String)request.getAttribute("comboCliente");
+		String cuit = (String)request.getParameter("cuit");
 		if(cuit != null) {
 			Cliente c = new Cliente();
+			c.setCuit(cuit);
 			c = new LogicCliente().getByCuit(c);
 			request.getSession().setAttribute("cliente", c);
 		}else {

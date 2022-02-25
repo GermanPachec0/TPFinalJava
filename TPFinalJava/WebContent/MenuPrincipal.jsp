@@ -8,10 +8,19 @@
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
 <title>Menú Principal</title>
+<<<<<<< HEAD
 
 	<link href="styles/bootstrap.css" rel="stylesheet">
 	<link href="styles/bootstrap.min.css" rel="stylesheet">
 	<link href="styles/signin.css" rel="stylesheet">
+=======
+	<!-- Bootstrap core CSS -->
+    <link href="styles/bootstrap.css" rel="stylesheet">
+	
+    <!-- Custom styles for this template -->
+    <link href="styles/signin.css" rel="stylesheet">
+    <link href="styles/bootstrap.min.css" rel="stylesheet">
+>>>>>>> branch 'master' of https://github.com/GermanPachec0/TPFinalJava.git
 	<% 
 		Usuario usr = (Usuario)request.getSession().getAttribute("usuario");
 		if(usr == null){
