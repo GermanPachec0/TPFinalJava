@@ -17,14 +17,13 @@ public class Pedido {
 	
 	public double GetSubTotal() {
 		double total = 0;
-		
-		for(PedidoAnalisis pa : listAnalisis)
-			{
+		for(PedidoAnalisis pa : listAnalisis){
+			if(pa.getState() != entities.Estado.Deleted) {
 				total += pa.getAnalisis().getPrecio() ;
 			}
-			return total*((double)1-(descuento*0.01));
-	
 		}
+		return total*((double)1-(descuento*0.01));
+	}
 		
 	
 	public Date getFechaPedido() {
@@ -76,8 +75,6 @@ public class Pedido {
 		this.state = state;
 	}
 	
-	
-	
 	@Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -89,6 +86,9 @@ public class Pedido {
         }
         Pedido otro = (Pedido) obj;
         if(otro.getCodPedido() != this.getCodPedido()) {
+        	return false;
+        }
+        if(this.getState() == entities.Estado.Deleted) {
         	return false;
         }
         return true;

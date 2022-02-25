@@ -20,6 +20,8 @@
     <link href="styles/signin.css" rel="stylesheet">
     <link href="styles/bootstrap.min.css" rel="stylesheet">
     <%
+    	request.getSession().setAttribute("modo", null);
+    	request.getSession().setAttribute("liquidacion", null);
     	LinkedList<Liquidacion> listaLiq= new LogicLiquidacion().getAll();
    		Usuario usr = (Usuario)request.getSession().getAttribute("usuario");
    		if(usr == null){
@@ -101,6 +103,7 @@
 				        <th>Cliente</th>
 				        <th>Descuento</th>
 				        <th>Fecha Pedido</th>
+				        <th>SubTotal</th>
 				      </tr>
 				 </thead>
        			<tbody class="collapse" id="demo<%=index%>">
@@ -111,7 +114,7 @@
 				        <td><%=p.getCliente().getRazonSocial()%></td>
 				        <td><%=p.getDescuento() %></td>
 				        <td><%=p.getFechaPedido()%></td>
-				        <td>0</td>
+				        <td><%=p.GetSubTotal()%></td>
        				</tr>
        			<%} %>
        			</tbody>

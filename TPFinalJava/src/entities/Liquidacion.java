@@ -21,7 +21,7 @@ public class Liquidacion {
 		total = (double) 0;
 		for(Pedido p : pedidos) {
 			if(p.getState() != entities.Estado.Deleted) {
-				/*total += p.GetSubTotal();*/
+				total += p.GetSubTotal();
 			}
 		}
 		return total;

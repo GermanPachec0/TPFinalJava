@@ -1,6 +1,8 @@
+<%@page import="entities.Estado"%>
 <%@page import="entities.Liquidacion"%>
 <%@page import="entities.Usuario"%>
 <%@page import="java.util.LinkedList"%>
+<%@page import="java.util.Date"%>
 <%@page import="entities.Pedido"%>
 <%@page import="logic.LogicPedido"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -16,14 +18,21 @@
     <link href="styles/signin.css" rel="stylesheet">
     <link href="styles/bootstrap.min.css" rel="stylesheet">
     <%
+    	String modo = (String)request.getSession().getAttribute("modo");
     	Liquidacion l = (Liquidacion)request.getSession().getAttribute("liquidacion");
-    	if(l == null){
+    	if(l == null && modo == null){
     		l = new Liquidacion();
     		l.setPedidos(new LinkedList<Pedido>());
+    		l.setFechaLiquidacion(new java.sql.Date(new java.util.Date().getTime()));
     		request.getSession().setAttribute("liquidacion", l);
     	}
     	LinkedList<Pedido> pedidosALiquidar = new LogicPedido().getNoLiquidado();
-    	Usuario u = (Usuario)request.getSession().getAttribute("usuario");
+    	Usuario u;
+    	if(modo == null){
+    		u = (Usuario)request.getSession().getAttribute("usuario");
+    	}else{
+    		u = l.getEmpleado();
+    	}
     %>
 </head>
 <body>
@@ -47,8 +56,16 @@
 			      </tr>
 			    </thead>
 			    <tbody>
+			    <%LinkedList<Pedido> listaNo = new LinkedList<Pedido>();
+			    System.out.println("Comienzo");
+		    	for(Pedido ped : l.getPedidos()){
+		    		System.out.println(ped.getState());
+		    		if(ped.getState() != entities.Estado.Deleted){
+		    			listaNo.add(ped);
+		    		}
+		    	}%>
 			    <%for(Pedido p : pedidosALiquidar ){
-			    	if(!l.getPedidos().contains(p)){%>
+			    	if(!listaNo.contains(p)){%>
 			      <tr>
 			        <td><%=p.getCodPedido() %> </td>
 			        <td><%=p.getCliente().getRazonSocial()%></td>
@@ -74,15 +91,17 @@
 			      </tr>
 			    </thead>
 			    <tbody>
-			    <%for(Pedido p : l.getPedidos()){%>
+			    <%int i = 0;%>
+			    <%for(Pedido p : l.getPedidos()){
+			    if(p.getState() != Estado.Deleted){%>
 			      <tr>
 			        <td><%=p.getCodPedido() %> </td>
 			        <td><%=p.getCliente().getRazonSocial()%></td>
 			        <td><%=p.getDescuento() %></td>
 			        <td><%=p.getFechaPedido()%></td>
-			        <td><a class="bg-danger text-white" href="LiquidacionPedidoServlet?accion=eliminar&codPedido=<%=p.getCodPedido()%>"><button type="button" class="btn btn-danger">Quitar</button></a></td>
+			        <td><a class="bg-danger text-white" href="LiquidacionPedidoServlet?accion=eliminar&index=<%=i%>"><button type="button" class="btn btn-danger">Quitar</button></a></td>
 			      </tr>
-			      <%} %>
+			      <%}i++;} %>
 			    </tbody>
 	  		</table>
 	  		<div>
@@ -90,9 +109,11 @@
 	  			<input type="text" id="total" name="total" value="<%=l.getTotal()%>" readonly>
 	  			<label for="birthday">Empleado Asignado</label>
 	  			<input type="text" id="empleado" name="empleado" value="<%=u.getNombreCompleto()%>" readonly>
+	  			<label for="birthday">Fecha</label>
+	  			<input type="text" id="date" name="date" value="<%=l.getFechaLiquidacion()%>" readonly>
 	  		</div>
 	  		<div>
-	  			<button type="submit" class="btn btn-primary" name="accion" value="insertar_def">Confirmar</button>
+	  			<button type="submit" class="btn btn-primary" name="accion" value="<%=(modo == null ? "insertar_def" : "update_def")%>">Confirmar</button>
  				<button type="button" class="btn btn-secondary" onclick="location.href = 'ListaLiquidacion.jsp'">Cancelar</button>
    			</div>
    		</div>
