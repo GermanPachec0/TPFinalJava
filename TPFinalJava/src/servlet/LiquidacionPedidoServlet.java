@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import entities.Pedido;
 import entities.Liquidacion;
+import logic.LogicLiquidacion;
 import logic.LogicPedido;
 
 /**
@@ -38,6 +39,9 @@ public class LiquidacionPedidoServlet extends HttpServlet {
 			case "insertar":
 				this.insertarPedido(request,response);
 				break;
+			case "eliminar":
+				this.eliminarPedido(request,response);
+				break;
 			default:
 				break;
 			}
@@ -53,9 +57,6 @@ public class LiquidacionPedidoServlet extends HttpServlet {
 		if(accion!=null)
 		{
 			switch (accion) {
-			case "eliminar":
-				this.eliminarPedido(request,response);
-				break;
 			case "insertar_def":
 				this.insertar_defLiquidacion(request,response);
 				break;
@@ -68,12 +69,18 @@ public class LiquidacionPedidoServlet extends HttpServlet {
 
 	private void insertar_defLiquidacion(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		Liquidacion l = (Liquidacion)request.getSession().getAttribute("liquidacion");
+		new LogicLiquidacion().add(l);
 	}
 
-	private void eliminarPedido(HttpServletRequest request, HttpServletResponse response) {
+	private void eliminarPedido(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		int codPedido = Integer.parseInt(request.getParameter("codPedido"));
+		Pedido p = new Pedido();
+		p.setCodPedido(codPedido);
+		p = new LogicPedido().getByCod(p);
+		((Liquidacion)request.getSession().getAttribute("liquidacion")).getPedidos().remove(p);
+		request.getRequestDispatcher("/AgregarLiquidacion.jsp").forward(request, response);
 	}
 
 	private void insertarPedido(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -81,7 +88,7 @@ public class LiquidacionPedidoServlet extends HttpServlet {
 		int codPedido = Integer.parseInt(request.getParameter("codPedido"));
 		Pedido p = new Pedido();
 		p.setCodPedido(codPedido);
-		p = new LogicPedido().getByCodSinLista(p);
+		p = new LogicPedido().getByCod(p);
 		((Liquidacion)request.getSession().getAttribute("liquidacion")).getPedidos().add(p);
 		request.getRequestDispatcher("/AgregarLiquidacion.jsp").forward(request, response);
 	}

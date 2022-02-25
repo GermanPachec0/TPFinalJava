@@ -35,9 +35,6 @@ public class LogicPedido {
 		pedido.setListAnalisis(dpa.getByPedido(pedido));
 		return pedido;
 	}
-	public Pedido getByCodSinLista(Pedido p) {
-		return dp.getByCod(p);
-	}
 	public void add(Pedido p) {
 		dp.add(p);
 		for(PedidoAnalisis pa : p.getListAnalisis()) {

@@ -72,9 +72,15 @@ public class Pedido {
             return false;
         }
         Pedido otro = (Pedido) obj;
-        if(otro.getCodPedido() != this.getCodLiquidacion()) {
+        if(otro.getCodPedido() != this.getCodPedido()) {
         	return false;
         }
         return true;
+	}
+	@Override
+	public int hashCode() {
+		int hash = 5;
+		hash = 53 * hash + this.codPedido;
+		return hash;
 	}
 }

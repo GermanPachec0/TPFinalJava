@@ -1,4 +1,5 @@
 <%@page import="entities.Liquidacion"%>
+<%@page import="entities.Usuario"%>
 <%@page import="java.util.LinkedList"%>
 <%@page import="entities.Pedido"%>
 <%@page import="logic.LogicPedido"%>
@@ -22,6 +23,7 @@
     		request.getSession().setAttribute("liquidacion", l);
     	}
     	LinkedList<Pedido> pedidosALiquidar = new LogicPedido().getNoLiquidado();
+    	Usuario u = (Usuario)request.getSession().getAttribute("usuario");
     %>
 </head>
 <body>
@@ -58,6 +60,42 @@
 			    </tbody>
 	  		</table>  
 		</div>
+		<div class="form-group">
+			<br>
+  			<h3>Pedidos en la Liquidación</h3>
+ 			<table class="table table-fixed table-condensed">
+			    <thead class="table-dark">
+			      <tr>
+			        <th>Codigo Pedido</th>
+			        <th>Cliente</th>
+			        <th>Descuento</th>
+			        <th>Fecha Pedido</th>
+			        <th>Acción</th>
+			      </tr>
+			    </thead>
+			    <tbody>
+			    <%for(Pedido p : l.getPedidos()){%>
+			      <tr>
+			        <td><%=p.getCodPedido() %> </td>
+			        <td><%=p.getCliente().getRazonSocial()%></td>
+			        <td><%=p.getDescuento() %></td>
+			        <td><%=p.getFechaPedido()%></td>
+			        <td><a class="bg-danger text-white" href="LiquidacionPedidoServlet?accion=eliminar&codPedido=<%=p.getCodPedido()%>"><button type="button" class="btn btn-danger">Quitar</button></a></td>
+			      </tr>
+			      <%} %>
+			    </tbody>
+	  		</table>
+	  		<div>
+	  			<label for="birthday">Total</label>
+	  			<input type="text" id="total" name="total" value="<%=l.getTotal()%>" readonly>
+	  			<label for="birthday">Empleado Asignado</label>
+	  			<input type="text" id="empleado" name="empleado" value="<%=u.getNombreCompleto()%>" readonly>
+	  		</div>
+	  		<div>
+	  			<button type="submit" class="btn btn-primary" name="accion" value="insertar_def">Confirmar</button>
+ 				<button type="button" class="btn btn-secondary" onclick="location.href = 'ListaLiquidacion.jsp'">Cancelar</button>
+   			</div>
+   		</div>
 	</form> 
 	</div>
 </div>
