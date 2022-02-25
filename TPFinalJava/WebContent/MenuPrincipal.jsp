@@ -5,7 +5,10 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
 <title>Menú Principal</title>
+
 	<link href="styles/bootstrap.css" rel="stylesheet">
 	<link href="styles/bootstrap.min.css" rel="stylesheet">
 	<link href="styles/signin.css" rel="stylesheet">
