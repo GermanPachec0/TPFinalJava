@@ -52,8 +52,6 @@ public class DataPedido {
 		return pedidos;
 	}
 	
-	
-
 	public LinkedList<Pedido> getByCodLiquidacion(Liquidacion l) {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -74,6 +72,46 @@ public class DataPedido {
 					Semilla s = new Semilla();
 					s.setCodSemilla(rs.getInt("cod_semilla"));
 					p.setSemilla(s);
+					p.setFechaPedido(rs.getDate("fecha_pedido"));
+					p.setDescuento(rs.getDouble("descuento"));
+					p.setState(Estado.Untouched);
+					
+					pedidos.add(p);
+				}
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs!=null) rs.close();
+				if(stmt!=null) stmt.close();
+				DbConnector.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return pedidos;
+	}
+	
+	public LinkedList<Pedido> getNoLiquidado(){
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		LinkedList<Pedido> pedidos = new LinkedList<>();
+		try {
+			stmt = DbConnector.getInstancia().getConn().prepareStatement("select cod_pedido, cuit, cod_semilla, cod_liquidacion, fecha_pedido, descuento from pedido where cod_liquidacion is null");
+			rs = stmt.executeQuery();
+			if(rs!=null) {
+				while(rs.next()) {
+					Pedido p = new Pedido();
+					p.setCodPedido(rs.getInt("cod_pedido"));
+					Cliente c = new Cliente();
+					c.setCuit(rs.getString("cuit"));
+					p.setCliente(new DataCliente().getByCuit(c));
+					Semilla s = new Semilla();
+					s.setCodSemilla(rs.getInt("cod_semilla"));
+					p.setSemilla(s);
+					p.setCodLiquidacion(rs.getInt("cod_liquidacion"));
 					p.setFechaPedido(rs.getDate("fecha_pedido"));
 					p.setDescuento(rs.getDouble("descuento"));
 					p.setState(Estado.Untouched);

@@ -62,4 +62,15 @@ public class Pedido {
 	public void setState(Estado state) {
 		this.state = state;
 	}
+	@Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+
+        if (obj.getClass() != this.getClass()) {
+            return false;
+        }
+        Pedido otro = (Pedido) obj;
+	}
 }
