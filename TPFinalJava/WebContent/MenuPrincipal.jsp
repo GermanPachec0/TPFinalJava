@@ -25,6 +25,7 @@
 </head>
 <body style="background-color:rgb(251, 252, 255);">
 <div class="fixed-top">
+
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 	  <!-- Brand/logo -->
 	  <a class="navbar-brand mb-0 h1" href="MenuPrincipal.jsp">Menú</a>
