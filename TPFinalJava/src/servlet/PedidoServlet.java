@@ -185,10 +185,11 @@ public class PedidoServlet extends HttpServlet {
 		
 	}
 
-	private void modificarPedido(HttpServletRequest request, HttpServletResponse response) {
+	private void modificarPedido(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		Pedido pedido = (Pedido)request.getSession().getAttribute("pedido");
 		new LogicPedido().update(pedido);
+		request.getRequestDispatcher("/ListaPedido.jsp").forward(request, response);
 	}
 	
 	private void editarPedido(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -32,8 +32,14 @@
     <!-- Custom styles for this template -->
     <link href="styles/signin.css" rel="stylesheet">
   <%
-    Pedido pedido = (Pedido)request.getAttribute("pedido");
+  
+    Pedido pedido = (Pedido)request.getSession().getAttribute("pedido");
+    if(pedido == null)
+    {
+    pedido = (Pedido)request.getAttribute("pedido");
    	request.getSession().setAttribute("pedido", pedido);
+    }
+    		
   %>
 </head>
 <body>

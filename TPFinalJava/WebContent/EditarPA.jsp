@@ -21,7 +21,7 @@
 	  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-<title>Agregar Pedido</title>
+<title>Editar Pedido - Analisis</title>
 
  <!-- Bootstrap core CSS -->
     <link href="styles/bootstrap.css" rel="stylesheet">
@@ -66,7 +66,7 @@
 		</div>
 		
 		<div class="form-group"  style="display:none;">
-					<input type="text" class="form-control" name="observacion" value="<%=index%>" >
+					<input type="text" class="form-control" name="index" value="<%=index%>" >
 		</div>
 
 		<button type="submit" class="btn btn-primary" name="accion" value="modificarPA">Confirmar</button>
