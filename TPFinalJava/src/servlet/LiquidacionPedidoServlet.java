@@ -81,7 +81,7 @@ public class LiquidacionPedidoServlet extends HttpServlet {
 		int codPedido = Integer.parseInt(request.getParameter("codPedido"));
 		Pedido p = new Pedido();
 		p.setCodPedido(codPedido);
-		p = new LogicPedido().getByCod(p);
+		p = new LogicPedido().getByCodSinLista(p);
 		((Liquidacion)request.getSession().getAttribute("liquidacion")).getPedidos().add(p);
 		request.getRequestDispatcher("/AgregarLiquidacion.jsp").forward(request, response);
 	}

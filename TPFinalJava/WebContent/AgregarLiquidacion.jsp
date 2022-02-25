@@ -21,7 +21,7 @@
     		l.setPedidos(new LinkedList<Pedido>());
     		request.getSession().setAttribute("liquidacion", l);
     	}
-    	LinkedList<Pedido> pedidosALiquidar = new LogicPedido().getAll();
+    	LinkedList<Pedido> pedidosALiquidar = new LogicPedido().getNoLiquidado();
     %>
 </head>
 <body>
@@ -46,7 +46,6 @@
 			    </thead>
 			    <tbody>
 			    <%for(Pedido p : pedidosALiquidar ){
-			    	System.out.println(!l.getPedidos().contains(p));
 			    	if(!l.getPedidos().contains(p)){%>
 			      <tr>
 			        <td><%=p.getCodPedido() %> </td>
