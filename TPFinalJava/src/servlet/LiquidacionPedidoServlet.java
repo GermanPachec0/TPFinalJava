@@ -7,20 +7,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import entities.Pedido;
 import entities.Liquidacion;
-import logic.LogicLiquidacion;
+import logic.LogicPedido;
 
 /**
- * Servlet implementation class LiquidacionServlet
+ * Servlet implementation class LiquidacionPedidoServlet
  */
-@WebServlet("/LiquidacionServlet")
-public class LiquidacionServlet extends HttpServlet {
+@WebServlet("/LiquidacionPedidoServlet")
+public class LiquidacionPedidoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LiquidacionServlet() {
+    public LiquidacionPedidoServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,35 +31,17 @@ public class LiquidacionServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		/*String accion = request.getParameter("accion");
+		String accion = request.getParameter("accion");
 		if(accion!=null)
 		{
 			switch (accion) {
 			case "insertar":
-				this.insertarLiquidacion(request,response);
+				this.insertarPedido(request,response);
 				break;
 			default:
 				break;
 			}
-		}*/
-	}
-
-	/*private void insertarLiquidacion(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
-		
-	}*/
-
-	private void eliminarLiquidacion(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		Liquidacion l = new Liquidacion();
-		l.setCodLiquidacion(Integer.parseInt(request.getParameter("codLiquidacion")));
-		new LogicLiquidacion().remove(l);
-		request.getRequestDispatcher("/ListaLiquidacion.jsp").forward(request, response);
-	}
-
-	private void editarLiquidacion(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
-		
+		}
 	}
 
 	/**
@@ -71,13 +54,36 @@ public class LiquidacionServlet extends HttpServlet {
 		{
 			switch (accion) {
 			case "eliminar":
-				this.eliminarLiquidacion(request,response);
+				this.eliminarPedido(request,response);
+				break;
+			case "insertar_def":
+				this.insertar_defLiquidacion(request,response);
 				break;
 			default:
 				break;
 			}
 		}
 		doGet(request, response);
+	}
+
+	private void insertar_defLiquidacion(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void eliminarPedido(HttpServletRequest request, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void insertarPedido(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		int codPedido = Integer.parseInt(request.getParameter("codPedido"));
+		Pedido p = new Pedido();
+		p.setCodPedido(codPedido);
+		p = new LogicPedido().getByCod(p);
+		((Liquidacion)request.getSession().getAttribute("liquidacion")).getPedidos().add(p);
+		request.getRequestDispatcher("/AgregarLiquidacion.jsp").forward(request, response);
 	}
 
 }

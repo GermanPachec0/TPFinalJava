@@ -68,7 +68,7 @@ public class PedidoServlet extends HttpServlet {
 		String accion = request.getParameter("accion");
 		if(accion!=null)
 		{
-			switch (accion) {
+			switch(accion) {
 			
 			case "modificar":
 			this.modificarPedido(request,response);break;
