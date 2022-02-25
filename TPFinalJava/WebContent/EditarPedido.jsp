@@ -1,3 +1,4 @@
+<%@page import="entities.Estado"%>
 <%@page import="entities.Cliente"%>
 <%@page import="java.util.LinkedList"%>
 <%@page import="logic.LogicCliente"%>
@@ -47,7 +48,7 @@
 <div class="container">
 
 	<div class="mt-4 p-5 bg-info text-white rounded text-center">
-  		<h1>Agregar Pedido</h1>
+  		<h1>Editar Pedido</h1>
 	</div>
   <br>
    
@@ -95,24 +96,28 @@
 	    <thead class="table-dark">
 	      <tr>
 	        <th>Codigo Analisis</th>
-	        <th>Descripcion</th>
-	        <th>Precio</th>
+	        <th>Estado</th>
+	        <th>Observaciones</th>
 	        <th>Editar</th>
 	        <th>Eliminar</th>
 	      </tr>
 	    </thead>
 	    <tbody>
 	     <% int i = 0; %>
+	     
 	    <%for(PedidoAnalisis pa : pedido.getListAnalisis() ){ %>
+	    <%if(pa.getState()!=Estado.Deleted){ %>
 	      <tr>
 	        <td><%=pa.getAnalisis().getDescripcion() %> </td>
 	        <td><%=pa.getEstado() %></td>
 	        <td><%=pa.getObservaciones() %></td>
 	        <td><a class="bg-primary text-white" href="PedidoServlet?accion=editarPA&index=<%=i%>"><button type="button" class="btn btn-primary">Editar</button></a></td>
-       		<td><a class="bg-danger text-white" href="PedidoServlet??accion=eliminarPA&index=<%=i%>"><button type="button" class="btn btn-danger">Eliminar</button></a></td>
+       		<td><a class="bg-danger text-white" href="PedidoServlet?accion=eliminarPA&index=<%=i%>"><button type="button" class="btn btn-danger">Eliminar</button></a></td>
 	      </tr>
+	      <%}%>
 	      <%i++;%>
 	      <%} %>
+	      
 	     
 	    </tbody>
   </table>  

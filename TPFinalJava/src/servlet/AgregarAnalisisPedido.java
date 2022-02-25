@@ -67,7 +67,7 @@ public class AgregarAnalisisPedido extends HttpServlet {
 		
 		pedido.getListAnalisis().add(pa);
 		
-		request.getRequestDispatcher("/AgregarPedido.jsp").forward(request, response);
+		request.getRequestDispatcher("/EditarPedido.jsp").forward(request, response);
 	}
 
 	/**

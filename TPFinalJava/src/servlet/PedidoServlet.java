@@ -20,6 +20,7 @@ import entities.Semilla;
 import logic.LogicAnalisis;
 import logic.LogicCliente;
 import logic.LogicPedido;
+import logic.LogicSemilla;
 
 /**
  * Servlet implementation class PedidoServlet
@@ -50,9 +51,11 @@ public class PedidoServlet extends HttpServlet {
 			case "eliminar":
 			this.eliminarPedido(request,response);break;
 			case "insertar":
-		    this.insertarPedido(request,response);
+		    this.insertarPedido(request,response);break;
 			case "editarPA":
-			this.editarPA(request,response);	 
+			this.editarPA(request,response);break;
+			case "eliminarPA":
+			this.eliminarPA(request,response);break;
 				 
 			default:
 				//this.accionDefault(request,response);
@@ -66,11 +69,26 @@ public class PedidoServlet extends HttpServlet {
 
 	
 
+	private void eliminarPA(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int index =  Integer.parseInt(request.getParameter("index"));
+		Pedido pedido = (Pedido)request.getSession().getAttribute("pedido");
+		PedidoAnalisis paActual=pedido.getListAnalisis().get(index);
+		if(paActual.getState() == entities.Estado.New) {
+			pedido.getListAnalisis().remove(paActual);
+		}else {
+			paActual.setState(entities.Estado.Deleted);
+		}
+		request.getRequestDispatcher("/EditarPedido.jsp").forward(request, response);
+		
+		
+	}
+
 	private void editarPA(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		int index =  Integer.parseInt(request.getParameter("index"));
 		request.setAttribute("index", index);
 		request.getRequestDispatcher("/EditarPA.jsp").forward(request, response);
+		
 	}
 
 	/**
@@ -154,9 +172,9 @@ public class PedidoServlet extends HttpServlet {
 			Semilla sem = new Semilla();
 				sem.setCodSemilla(codSem);
 			Cliente cliente = new LogicCliente().getByCuit(cli);
-			
+			Semilla s = new LogicSemilla().getByCod(sem);
 			pedido.setCliente(cliente);
-			pedido.setSemilla(sem);
+			pedido.setSemilla(s);
 			pedido.setFechaPedido(new java.sql.Date(fecha.getTime()));
 			pedido.setDescuento(descuento);
 			
@@ -188,17 +206,48 @@ public class PedidoServlet extends HttpServlet {
 	private void modificarPedido(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		Pedido pedido = (Pedido)request.getSession().getAttribute("pedido");
+		SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+		String cuit = request.getParameter("cli");
+		int codSem = Integer.parseInt(request.getParameter("codSem"));
+		
+		java.util.Date fecha=null;
+		
+		try {
+			fecha = formato.parse(request.getParameter("fecha"));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		
+		double descuento = Double.parseDouble(request.getParameter("descuento"));
+		
+		Cliente cli = new Cliente();
+			cli.setCuit(cuit);
+		Semilla sem = new Semilla();
+			sem.setCodSemilla(codSem);
+		Cliente cliente = new LogicCliente().getByCuit(cli);
+		Semilla s = new LogicSemilla().getByCod(sem);
+		pedido.setCliente(cliente);
+		pedido.setSemilla(s);
+		pedido.setFechaPedido(new java.sql.Date(fecha.getTime()));
+		pedido.setDescuento(descuento);
+		System.out.println("Cantidad analisis"+pedido.getListAnalisis().size());
+		
 		new LogicPedido().update(pedido);
 		request.getRequestDispatcher("/ListaPedido.jsp").forward(request, response);
 	}
 	
 	private void editarPedido(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int codPedido = Integer.parseInt(request.getParameter("codPed"));		
+		
+		
+		int codPedido = Integer.parseInt(request.getParameter("codPed"));
 		Pedido pedido = new Pedido();
-			pedido.setCodPedido(codPedido);
-			System.out.println(pedido.getCodPedido());
+		pedido.setCodPedido(codPedido);
 		pedido = new LogicPedido().getByCod(pedido);
+		
+		
+		
 		request.setAttribute("pedido", pedido);
 		request.getRequestDispatcher("/EditarPedido.jsp").forward(request, response);
 		
