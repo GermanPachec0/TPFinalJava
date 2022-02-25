@@ -23,7 +23,7 @@
 	  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-<title>Agregar Pedido</title>
+<title>Editar Pedido</title>
 
  <!-- Bootstrap core CSS -->
     <link href="styles/bootstrap.css" rel="stylesheet">
@@ -43,7 +43,7 @@
     		
   %>
 </head>
-<body>
+<body style="background-color:rgb(251, 252, 255);"> 
 
 <div class="container">
 
@@ -73,7 +73,9 @@
   			<label for="sel1">Seleccionar Semilla</label>
   			
   				<select class="form-control" id="sel1" name="codSem">
-  				<%if(pedido.getSemilla().getCodSemilla() != 0){%>
+  				 
+  				
+  				<%if(pedido.getSemilla().getCodSemilla()!=0){%>
   				<option value="<%=pedido.getSemilla().getCodSemilla()%>" ><%="Especie: "+pedido.getSemilla().getEspecie() + " -- Raza: " + pedido.getSemilla().getRaza() %></option>
   				<% }%>
   			

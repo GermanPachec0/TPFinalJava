@@ -26,7 +26,7 @@
     <link href="styles/bootstrap.min.css" rel="stylesheet">
     
 </head>
-<body>
+<body style="background-color:rgb(251, 252, 255);">
 <div class="container-xl">
 
 <div class="mt-4 p-5 bg-info text-white rounded">

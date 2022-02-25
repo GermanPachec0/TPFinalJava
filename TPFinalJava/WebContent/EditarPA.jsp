@@ -36,7 +36,7 @@
         PedidoAnalisis pa = pedido.getListAnalisis().get(index);
   %>
 </head>
-<body>
+<body style="background-color:rgb(251, 252, 255);">
 
 <div class="container">
 
@@ -49,9 +49,15 @@
     	<div class="form-group">
   			<label for="sel1">Seleccionar Analisis</label>
   				<select class="form-control" id="sel1" name="codAnalisis">
-  				<%for(Analisis ana : new LogicAnalisis().getAll()){ %>
+  				
+  				<%if(pa.getAnalisis().getCodAnalisis() != 0 ){ %>
+  			 <option value="<%=pa.getAnalisis().getCodAnalisis()%>" ><%=pa.getAnalisis().getDescripcion()%></option>
+  				<%} %>
+  				
+  				<%for(Analisis ana : new LogicAnalisis().getAll()){ 
+  					if(ana.getCodAnalisis()!= pa.getAnalisis().getCodAnalisis()){%>
 					    <option value="<%=ana.getCodAnalisis()%>" ><%=ana.getDescripcion()%></option>
-					<%} %>	    
+					<%}} %>	    
   				</select>
 		</div>
 		

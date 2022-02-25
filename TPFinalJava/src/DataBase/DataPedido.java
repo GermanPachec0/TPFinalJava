@@ -29,7 +29,7 @@ public class DataPedido {
 					p.setCliente(new DataCliente().getByCuit(c));
 					Semilla s = new Semilla();
 					s.setCodSemilla(rs.getInt("cod_semilla"));
-					p.setSemilla(s);
+					p.setSemilla(new DataSemilla().getByCod(s));
 					p.setCodLiquidacion(rs.getInt("cod_liquidacion"));
 					p.setFechaPedido(rs.getDate("fecha_pedido"));
 					p.setDescuento(rs.getDouble("descuento"));
@@ -71,7 +71,7 @@ public class DataPedido {
 					p.setCliente(new DataCliente().getByCuit(c));
 					Semilla s = new Semilla();
 					s.setCodSemilla(rs.getInt("cod_semilla"));
-					p.setSemilla(s);
+					p.setSemilla(new DataSemilla().getByCod(s));
 					p.setFechaPedido(rs.getDate("fecha_pedido"));
 					p.setDescuento(rs.getDouble("descuento"));
 					p.setState(Estado.Untouched);
@@ -110,7 +110,7 @@ public class DataPedido {
 					p.setCliente(new DataCliente().getByCuit(c));
 					Semilla s = new Semilla();
 					s.setCodSemilla(rs.getInt("cod_semilla"));
-					p.setSemilla(s);
+					p.setSemilla(new DataSemilla().getByCod(s));
 					p.setCodLiquidacion(rs.getInt("cod_liquidacion"));
 					p.setFechaPedido(rs.getDate("fecha_pedido"));
 					p.setDescuento(rs.getDouble("descuento"));
@@ -151,7 +151,7 @@ public class DataPedido {
 				p.setCliente(new DataCliente().getByCuit(c));
 				Semilla s = new Semilla();
 				s.setCodSemilla(rs.getInt("cod_semilla"));
-				p.setSemilla(s);
+				p.setSemilla(new DataSemilla().getByCod(s));
 				p.setCodLiquidacion(rs.getInt("cod_liquidacion"));
 				p.setFechaPedido(rs.getDate("fecha_pedido"));
 				p.setDescuento(rs.getDouble("descuento"));

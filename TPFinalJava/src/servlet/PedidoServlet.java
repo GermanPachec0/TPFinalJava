@@ -231,7 +231,7 @@ public class PedidoServlet extends HttpServlet {
 		pedido.setSemilla(s);
 		pedido.setFechaPedido(new java.sql.Date(fecha.getTime()));
 		pedido.setDescuento(descuento);
-		System.out.println("Cantidad analisis"+pedido.getListAnalisis().size());
+		
 		
 		new LogicPedido().update(pedido);
 		request.getRequestDispatcher("/ListaPedido.jsp").forward(request, response);

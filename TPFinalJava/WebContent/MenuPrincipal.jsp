@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Menú Principal</title>
+<title>MenÃº Principal</title>
 	<link href="styles/bootstrap.css" rel="stylesheet">
 	<link href="styles/bootstrap.min.css" rel="stylesheet">
 	<link href="styles/signin.css" rel="stylesheet">
@@ -13,18 +13,18 @@
 		Usuario usr = (Usuario)request.getSession().getAttribute("usuario");
 		if(usr == null){
 			request.setAttribute("titulo", "Acceso Denegado");
-			request.setAttribute("mensage", "Usted no ha iniciado sesión correctamente o carece de los permisos necesarios apra acceder a esta página.");
+			request.setAttribute("mensage", "Usted no ha iniciado sesiÃ³n correctamente o carece de los permisos necesarios apra acceder a esta pÃ¡gina.");
 			request.setAttribute("pagina", "Login");
 			request.setAttribute("direccion", "./index.html");
 			request.getRequestDispatcher("/Advertencia.jsp").forward(request, response);
 		}
 	%>
 </head>
-<body>
+<body style="background-color:rgb(251, 252, 255);">
 <div class="fixed-top">
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 	  <!-- Brand/logo -->
-	  <a class="navbar-brand mb-0 h1" href="MenuPrincipal.jsp">Menú</a>
+	  <a class="navbar-brand mb-0 h1" href="MenuPrincipal.jsp">MenÃº</a>
 	  
 	  <!-- Links -->
 	  <ul class="navbar-nav">
@@ -32,13 +32,13 @@
 	      <a class="nav-link" href="ListaPedido.jsp">Pedidos</a>
 	    </li>
 	    <li class="nav-item">
-	      <a class="nav-link" href="ListaLiquidacion.jsp">Liquidación</a>
+	      <a class="nav-link" href="ListaLiquidacion.jsp">LiquidaciÃ³n</a>
 	    </li>
 	    <li class="nav-item">
 	      <a class="nav-link" href="ListaCliente.jsp">Clientes</a>
 	    </li>
 	    <li class="nav-item">
-	      <a class="nav-link" href="ConsultaAnalisis.jsp">Análisis</a>
+	      <a class="nav-link" href="ConsultaAnalisis.jsp">AnÃ¡lisis</a>
 	    </li>
 	    <li class="nav-item">
 	      <a class="nav-link" href="ListaSemilla.jsp">Semillas</a>
@@ -51,6 +51,16 @@
 	  </ul>
 	</nav>
 	<br>
+	<div class="container-fluid">
+	<div class="jumbotron text-center" >
+	  <h1>Welcome</h1>
+	  <br>
+	  <br>
+	  <p><b>This system was developed by Pacheco GermÃ¡n and Angel Folguera</b></p>
+	</div>
+	</div>
+	
 </div>
+
 </body>
 </html>

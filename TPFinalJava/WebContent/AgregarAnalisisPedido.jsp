@@ -20,7 +20,7 @@
 	  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-<title>Agregar Pedido</title>
+<title>Agregar Pedido - Pedido</title>
 
  <!-- Bootstrap core CSS -->
     <link href="styles/bootstrap.css" rel="stylesheet">
@@ -33,7 +33,7 @@
     
   %>
 </head>
-<body>
+<body style="background-color:rgb(251, 252, 255);" >
 
 <div class="container">
 
@@ -47,6 +47,7 @@
   			<label for="sel1">Seleccionar Analisis</label>
   		   	
   				<select class="form-control" id="sel1" name="codAnalisis">
+  				
   				<%for(Analisis ana : listaAna){ %>
 					    <option value="<%=ana.getCodAnalisis()%>" ><%=ana.getDescripcion()%></option>
 					<%} %>	    

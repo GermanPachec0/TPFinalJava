@@ -18,7 +18,7 @@
 	    <meta name="description" content="">
 	    <meta name="author" content="">
 	    <link rel="icon" href="https://getbootstrap.com/favicon.ico">
-<title>Lista Clientes</title>
+<title>Lista Pedido</title>
   <!-- Bootstrap core CSS -->
     <link href="styles/bootstrap.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -34,7 +34,7 @@
     	request.getSession().setAttribute("pedido", null);
     %>
 </head>
-<body>
+<body style="background-color:rgb(251, 252, 255);">
 
 
 <div class="container">

@@ -23,7 +23,7 @@
     <link href="styles/signin.css" rel="stylesheet">
   
 </head>
-<body>
+<body style="background-color:rgb(251, 252, 255);">
 
 <div class="container">
 
