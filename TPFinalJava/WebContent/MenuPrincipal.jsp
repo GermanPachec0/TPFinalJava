@@ -6,9 +6,12 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Menú Principal</title>
-	<link href="styles/bootstrap.css" rel="stylesheet">
-	<link href="styles/bootstrap.min.css" rel="stylesheet">
-	<link href="styles/signin.css" rel="stylesheet">
+	<!-- Bootstrap core CSS -->
+    <link href="styles/bootstrap.css" rel="stylesheet">
+	
+    <!-- Custom styles for this template -->
+    <link href="styles/signin.css" rel="stylesheet">
+    <link href="styles/bootstrap.min.css" rel="stylesheet">
 	<% 
 		Usuario usr = (Usuario)request.getSession().getAttribute("usuario");
 		if(usr == null){

@@ -20,10 +20,7 @@
     <link href="styles/signin.css" rel="stylesheet">
     <link href="styles/bootstrap.min.css" rel="stylesheet">
     <%
-    	request.getSession().setAttribute("modo", null);
-    	request.getSession().setAttribute("liquidacion", null);
-    	LinkedList<Liquidacion> listaLiq= new LogicLiquidacion().getAll();
-   		Usuario usr = (Usuario)request.getSession().getAttribute("usuario");
+    	Usuario usr = (Usuario)request.getSession().getAttribute("usuario");
    		if(usr == null){
    			request.setAttribute("titulo", "Acceso Denegado");
    			request.setAttribute("mensage", "Usted no ha iniciado sesión correctamente o carece de los permisos necesarios para acceder a esta página.");
@@ -31,6 +28,9 @@
    			request.setAttribute("direccion", "./MenuPrincipal.jsp");
    			request.getRequestDispatcher("/Advertencia.jsp").forward(request, response);
    		}
+   		request.getSession().setAttribute("modo", null);
+    	request.getSession().setAttribute("liquidacion", null);
+    	LinkedList<Liquidacion> listaLiq= new LogicLiquidacion().getAll();
     %>
 </head>
 <body style="background-color:rgb(251, 252, 255);">
