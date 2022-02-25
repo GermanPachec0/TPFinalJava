@@ -72,5 +72,9 @@ public class Pedido {
             return false;
         }
         Pedido otro = (Pedido) obj;
+        if(otro.getCodPedido() != this.getCodLiquidacion()) {
+        	return false;
+        }
+        return true;
 	}
 }
