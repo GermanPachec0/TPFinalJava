@@ -60,23 +60,31 @@
   				<%if(pedido.getCliente().getCuit() != null){ %>
   					<option  value="<%=pedido.getCliente().getCuit()%>"><%=pedido.getCliente().getRazonSocial() %></option>
   				<%} %>
+  				
   				<%for(Cliente cli : new LogicCliente().getAll()){ 
   					if(cli.getCuit() != pedido.getCliente().getCuit()){%>
 				    <option  value="<%=cli.getCuit()%>"><%=cli.getRazonSocial() %></option>
 				<%} } %>	    
+				
   				</select>
 		</div>
 		
 		<div class="form-group">
   			<label for="sel1">Seleccionar Semilla</label>
+  			
   				<select class="form-control" id="sel1" name="codSem">
-  				<%for(Semilla sem : new LogicSemilla().getAll()){ %>
-					    <option value="<%=sem.getCodSemilla()%>" ><%="Especie: "+sem.getEspecie() + " -- Raza: " + sem.getRaza() %></option>
-					<%} %>
+  				<%if(pedido.getSemilla().getCodSemilla() != 0){%>
+  				<option value="<%=pedido.getSemilla().getCodSemilla()%>" ><%="Especie: "+pedido.getSemilla().getEspecie() + " -- Raza: " + pedido.getSemilla().getRaza() %></option>
+  				<% }%>
+  			
+			<%for(Semilla sem : new LogicSemilla().getAll()){
+					if(sem.getCodSemilla() != pedido.getSemilla().getCodSemilla()){%>
+					<option value="<%=sem.getCodSemilla()%>" ><%="Especie: "+sem.getEspecie() + " -- Raza: " + sem.getRaza() %></option>
+			<%} }%>
+			
   				</select>
+  				
 		</div>
-		
-		
 		
 		<div class="form-group">
 			 <label for="birthday">Cambiar Fecha de Pedido</label>
