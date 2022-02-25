@@ -18,6 +18,12 @@ public class Liquidacion {
 		this.fechaLiquidacion = fechaLiquidacion;
 	}
 	public Double getTotal() {
+		total = (double) 0;
+		for(Pedido p : pedidos) {
+			if(p.getState() != entities.Estado.Deleted) {
+				total += p.GetSubTotal();
+			}
+		}
 		return total;
 	}
 	public void setTotal(Double total) {

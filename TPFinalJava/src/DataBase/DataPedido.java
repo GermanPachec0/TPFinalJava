@@ -200,7 +200,7 @@ public class DataPedido {
 		}	
 	}
 
-	public void update(Pedido p) {
+	public void update(Pedido p){
 		PreparedStatement stmt = null;
 		try {
 			stmt=DbConnector.getInstancia().getConn().prepareStatement("update pedido set cuit=?, cod_semilla=?,cod_liquidacion=?,fecha_pedido=?,descuento=? where cod_pedido=?");

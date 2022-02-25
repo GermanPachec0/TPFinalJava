@@ -86,10 +86,9 @@ public class DataLiquidacion {
 		PreparedStatement stmt = null;
 		ResultSet keyRs = null;
 		try {
-			stmt=DbConnector.getInstancia().getConn().prepareStatement("insert into liquidacion(cod_user, fecha_liquidacion, total) values(?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
+			stmt=DbConnector.getInstancia().getConn().prepareStatement("insert into liquidacion(cod_user, fecha_liquidacion, total) values(?,current_date(),?)", PreparedStatement.RETURN_GENERATED_KEYS);
 			stmt.setInt(1, l.getEmpleado().getCodUser());
-			stmt.setDate(2, l.getFechaLiquidacion());
-			stmt.setDouble(3, l.getTotal());
+			stmt.setDouble(2, l.getTotal());
 			stmt.executeUpdate();
 			keyRs = stmt.getGeneratedKeys();
 			if(keyRs!=null && keyRs.next()) {
