@@ -18,9 +18,13 @@ datos y realizar las liquidaciones.
 
 # Regularidad
 **ABMC simple:** ABMC Semilla
+
 **ABMC dependiente:** ABMC Pedido
+
 **CU NO-ABMC** ABMC Liquidación
+
 **Listado simple:** Listado de Análisis
+
 **Listado complejo:** -
 
 # Aprobación Directa
