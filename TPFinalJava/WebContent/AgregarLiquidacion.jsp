@@ -66,9 +66,7 @@
 			    </thead>
 			    <tbody>
 			    <%LinkedList<Pedido> listaNo = new LinkedList<Pedido>();
-			    System.out.println("Comienzo");
-		    	for(Pedido ped : l.getPedidos()){
-		    		System.out.println(ped.getState());
+			    for(Pedido ped : l.getPedidos()){
 		    		if(ped.getState() != entities.Estado.Deleted){
 		    			listaNo.add(ped);
 		    		}
