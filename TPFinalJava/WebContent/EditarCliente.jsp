@@ -56,7 +56,7 @@
 		</div>
 		<div class="form-group">
 			<label for="Email">Email</label>
-			<input type="text" class="form-control" name="email" value="<%=cliActual.getEmail()%>"  required>
+			<input type="email" class="form-control" name="email" value="<%=cliActual.getEmail()%>"  required>
 		</div>
 		<div class="form-group">
 		<label for="Razon Social">Razon Social</label>
