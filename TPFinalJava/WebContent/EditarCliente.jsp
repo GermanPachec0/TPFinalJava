@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@page import="entities.Cliente"%>
+<%@page import="entities.Usuario"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,13 +25,22 @@
     <link href="styles/signin.css" rel="stylesheet">
     
     <link href="styles/bootstrap.min.css" rel="stylesheet">
-    
+    <%
+   	Usuario usr = (Usuario)request.getSession().getAttribute("usuario");
+	if(usr == null){
+		request.setAttribute("titulo", "Acceso Denegado");
+		request.setAttribute("mensage", "Usted no ha iniciado sesión correctamente o carece de los permisos necesarios para acceder a esta página.");
+		request.setAttribute("pagina", "Menu Principal");
+		request.setAttribute("direccion", "./MenuPrincipal.jsp");
+		request.getRequestDispatcher("/Advertencia.jsp").forward(request, response);
+	}
+	%>
 </head>
 <body style="background-color:rgb(251, 252, 255);">
 <div class="container-xl">
 
 <div class="mt-4 p-5 bg-info text-white rounded">
-  <h1>Editar Semilla</h1>
+  <h1>Editar Cliente</h1>
 </div>
 
 <form action="ClienteServlet" method ="post" class="was-validated"><%

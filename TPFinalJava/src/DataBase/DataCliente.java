@@ -81,7 +81,7 @@ public class DataCliente {
 		PreparedStatement stmt = null;
 		ResultSet keyRs = null;
 		try {
-			stmt=DbConnector.getInstancia().getConn().prepareStatement("insert into cliente(cuit, razon_social, telefono, email, password) values(?,?,?,?,?)");
+			stmt=DbConnector.getInstancia().getConn().prepareStatement("insert into cliente(cuit, razon_social, telefono, email) values(?,?,?,?)");
 			
 			stmt.setString(1, c.getCuit());
 			stmt.setString(2, c.getRazonSocial());

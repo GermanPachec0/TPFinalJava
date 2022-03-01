@@ -143,13 +143,12 @@ public class DataUsuario {
 		PreparedStatement stmt = null;
 		
 		try {
-			stmt=DbConnector.getInstancia().getConn().prepareStatement("update usuario set username = ?, password = ?, tipo = ?, nombre = ?, apellido = ? where cod_user=?");
+			stmt=DbConnector.getInstancia().getConn().prepareStatement("update usuario set username = ?, tipo = ?, nombre = ?, apellido = ? where cod_user=?");
 			stmt.setString(1, u.getUsername());
-			stmt.setString(2, u.getPassword());
-			stmt.setInt(3, u.getTipo());
-			stmt.setString(4, u.getNombre());
-			stmt.setString(5, u.getApellido());
-			stmt.setInt(6, u.getCodUser());
+			stmt.setInt(2, u.getTipo());
+			stmt.setString(3, u.getNombre());
+			stmt.setString(4, u.getApellido());
+			stmt.setInt(5, u.getCodUser());
 			
 			stmt.executeUpdate();
 		} catch(SQLException e) {

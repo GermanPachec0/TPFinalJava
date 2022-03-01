@@ -4,6 +4,7 @@
 <%@page import="logic.LogicAnalisis"%>
 <%@page import="entities.Analisis"%>
 <%@page import="entities.Pedido"%>
+<%@page import="entities.Usuario"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -30,7 +31,16 @@
 
     <!-- Custom styles for this template -->
     <link href="styles/signin.css" rel="stylesheet">
-  <%LinkedList<Analisis> listaAna = new LogicAnalisis().getAll();
+  <%
+  	Usuario usr = (Usuario)request.getSession().getAttribute("usuario");
+	if(usr == null){
+		request.setAttribute("titulo", "Acceso Denegado");
+		request.setAttribute("mensage", "Usted no ha iniciado sesión correctamente o carece de los permisos necesarios para acceder a esta página.");
+		request.setAttribute("pagina", "Menu Principal");
+		request.setAttribute("direccion", "./MenuPrincipal.jsp");
+		request.getRequestDispatcher("/Advertencia.jsp").forward(request, response);
+	}
+  	LinkedList<Analisis> listaAna = new LogicAnalisis().getAll();
     Pedido p = (Pedido)request.getSession().getAttribute("pedido");
   %>
 </head>

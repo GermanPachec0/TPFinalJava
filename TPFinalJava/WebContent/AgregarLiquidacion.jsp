@@ -18,6 +18,15 @@
     <link href="styles/signin.css" rel="stylesheet">
     <link href="styles/bootstrap.min.css" rel="stylesheet">
     <%
+	    Usuario usr = (Usuario)request.getSession().getAttribute("usuario");
+		if(usr == null){
+			request.setAttribute("titulo", "Acceso Denegado");
+			request.setAttribute("mensage", "Usted no ha iniciado sesión correctamente o carece de los permisos necesarios para acceder a esta página.");
+			request.setAttribute("pagina", "Menu Principal");
+			request.setAttribute("direccion", "./MenuPrincipal.jsp");
+			request.getRequestDispatcher("/Advertencia.jsp").forward(request, response);
+		}
+		
     	String modo = (String)request.getSession().getAttribute("modo");
     	Liquidacion l = (Liquidacion)request.getSession().getAttribute("liquidacion");
     	if(l == null && modo == null){
