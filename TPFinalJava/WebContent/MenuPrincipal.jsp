@@ -1,26 +1,33 @@
 <%@page import="entities.Usuario"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta charset="utf-8">
 <title>Menú Principal</title>
+<<<<<<< HEAD
 
 
 	<link href="styles/bootstrap.css" rel="stylesheet">
 	<link href="styles/bootstrap.min.css" rel="stylesheet">
 	<link href="styles/signin.css" rel="stylesheet">
 
+=======
+>>>>>>> branch 'master' of https://github.com/GermanPachec0/TPFinalJava.git
 	<!-- Bootstrap core CSS -->
     <link href="styles/bootstrap.css" rel="stylesheet">
 	
     <!-- Custom styles for this template -->
     <link href="styles/signin.css" rel="stylesheet">
+<<<<<<< HEAD
     <link href="styles/bootstrap.min.css" rel="stylesheet">
 
+=======
+    <link href="styles/bootstrap.min.css" rel="stylesheet">
+>>>>>>> branch 'master' of https://github.com/GermanPachec0/TPFinalJava.git
 	<% 
 		Usuario usr = (Usuario)request.getSession().getAttribute("usuario");
 		if(usr == null){
@@ -34,6 +41,7 @@
 </head>
 <body style="background-color:rgb(251, 252, 255);">
 <div class="fixed-top">
+
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 	  <!-- Brand/logo -->
 	  <a class="navbar-brand mb-0 h1" href="MenuPrincipal.jsp">Menú</a>

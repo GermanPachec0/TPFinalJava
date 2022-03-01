@@ -6,6 +6,7 @@
 <%@page import="entities.Semilla"%>
 <%@page import="entities.Pedido"%>
 <%@page import="entities.PedidoAnalisis"%>
+<%@page import="entities.Usuario"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -33,7 +34,15 @@
     <!-- Custom styles for this template -->
     <link href="styles/signin.css" rel="stylesheet">
   <%
-  
+  	Usuario usr = (Usuario)request.getSession().getAttribute("usuario");
+	if(usr == null){
+		request.setAttribute("titulo", "Acceso Denegado");
+		request.setAttribute("mensage", "Usted no ha iniciado sesión correctamente o carece de los permisos necesarios para acceder a esta página.");
+		request.setAttribute("pagina", "Menu Principal");
+		request.setAttribute("direccion", "./MenuPrincipal.jsp");
+		request.getRequestDispatcher("/Advertencia.jsp").forward(request, response);
+	}
+	
     Pedido pedido = (Pedido)request.getSession().getAttribute("pedido");
     if(pedido == null)
     {

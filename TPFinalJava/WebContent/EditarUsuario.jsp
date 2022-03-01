@@ -24,7 +24,16 @@
     <link href="styles/signin.css" rel="stylesheet">
     
     <link href="styles/bootstrap.min.css" rel="stylesheet">
-    
+    <%
+   	Usuario usr = (Usuario)request.getSession().getAttribute("usuario");
+	if(usr == null || usr.getTipo() != 0){
+		request.setAttribute("titulo", "Acceso Denegado");
+		request.setAttribute("mensage", "Usted no ha iniciado sesión correctamente o carece de los permisos necesarios para acceder a esta página.");
+		request.setAttribute("pagina", "Menu Principal");
+		request.setAttribute("direccion", "./MenuPrincipal.jsp");
+		request.getRequestDispatcher("/Advertencia.jsp").forward(request, response);
+	}
+	%>
 </head>
 <body style="background-color:rgb(251, 252, 255);">
 <div class="container-xl">
@@ -43,7 +52,7 @@
 		
 			<div class="form-group">
 			<label for="Codigo de usuario">Codigo de Usuario</label>
-			<input type="text" class="form-control" name="apellido"  value="<%=usuActual.getCodUser() %>" readonly required>
+			<input type="text" class="form-control" name="codUser"  value="<%=usuActual.getCodUser() %>" readonly required>
 		</div>
 		<div class="form-group">
 			<label for="Apellido">Apellido</label>
@@ -55,7 +64,7 @@
 		</div>
 		<div class="form-group">
 			<label for="Tipo Usuario">Tipo de Usuario</label>
-			<input type="text" class="form-control" name="tipo" value="<%= usuActual.getTipo()%>" required>
+			<input type="text" class="form-control" name="tipo" value="<%=usuActual.getTipo()%>" required>
 		</div>
 			<div class="form-group">
 			<label for="Username">Username</label>

@@ -6,6 +6,7 @@
 <%@page import="entities.Semilla"%>
 <%@page import="entities.Pedido"%>
 <%@page import="entities.PedidoAnalisis"%>
+<%@page import="entities.Usuario"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -32,7 +33,17 @@
 
     <!-- Custom styles for this template -->
     <link href="styles/signin.css" rel="stylesheet">
-  <%LinkedList<Cliente> listaCli = new LogicCliente().getAll();
+  <%
+  	Usuario usr = (Usuario)request.getSession().getAttribute("usuario");
+	if(usr == null){
+		request.setAttribute("titulo", "Acceso Denegado");
+		request.setAttribute("mensage", "Usted no ha iniciado sesión correctamente o carece de los permisos necesarios para acceder a esta página.");
+		request.setAttribute("pagina", "Menu Principal");
+		request.setAttribute("direccion", "./MenuPrincipal.jsp");
+		request.getRequestDispatcher("/Advertencia.jsp").forward(request, response);
+	}
+  
+  	LinkedList<Cliente> listaCli = new LogicCliente().getAll();
     LinkedList<Semilla> listaSem = new LogicSemilla().getAll();
     		
     Pedido pedido = (Pedido)request.getSession().getAttribute("pedido");	
@@ -105,13 +116,17 @@
 	        <th>Codigo Analisis</th>
 	        <th>Descripcion</th>
 	        <th>Precio</th>
+	        <th>Estado</th>
+	        <th>Observaciones</th>
 	      </tr>
 	    </thead>
 	    <tbody>
 	    
 	    <%for(PedidoAnalisis pa : pedido.getListAnalisis() ){ %>
 	      <tr>
+	      	<td><%=pa.getAnalisis().getCodAnalisis() %> </td>
 	        <td><%=pa.getAnalisis().getDescripcion() %> </td>
+	        <td><%=pa.getAnalisis().getPrecio() %> </td>
 	        <td><%=pa.getEstado() %></td>
 	        <td><%=pa.getObservaciones() %></td>
 	      </tr>
@@ -119,7 +134,10 @@
 	     
 	    </tbody>
   </table>  
-  
+  <div>
+  	<label for="birthday">Total</label>
+	<input type="text" id="total" name="total" value="<%=pedido.GetSubTotal()%>" readonly>
+  </div>
   <button type="submit" class="btn btn-primary" name="accion" value="insertar_def">Confirmar</button>
   <button type="button" class="btn btn-secondary" onclick="location.href = 'ListaPedido.jsp'">Cerrar </button>
    
