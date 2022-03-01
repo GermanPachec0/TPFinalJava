@@ -62,10 +62,8 @@
 					<label for="Tipo">Tipo de Usuario</label>
 					<input type="text" class="form-control" name="tipo" required>
 				</div>
-			
-				
 				<div class="modal-footer">
-					<button type="submit" class="btn btn-primary" name="accion" value="insertar" data-bs-dismiss="modal">Agregar Cliente</button>
+					<button type="submit" class="btn btn-primary" name="accion" value="insertar" data-bs-dismiss="modal">Agregar Usuario</button>
 			        <button type="button" class="btn btn-secondary" onclick="location.href = 'ListaCliente.jsp'">Cerrar</button>
 		        </div>
 	</form>  
