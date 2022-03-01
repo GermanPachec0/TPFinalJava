@@ -84,11 +84,13 @@ public class UsuarioServlet extends HttpServlet {
 		String nombre =  request.getParameter("nombre");
 		int tipo = Integer.parseInt(request.getParameter("tipo"));
 		String username = request.getParameter("username");
+		String password = request.getParameter("password");
 		Usuario usuario  = new Usuario();
 			usuario.setApellido(apellido);
 			usuario.setTipo(tipo);
 			usuario.setNombre(nombre);
 			usuario.setUsername(username);
+			usuario.setPassword(password);
 		new LogicUsuario().add(usuario);
 		request.getRequestDispatcher("/ListaUsuario.jsp").forward(request, response);
 	}
